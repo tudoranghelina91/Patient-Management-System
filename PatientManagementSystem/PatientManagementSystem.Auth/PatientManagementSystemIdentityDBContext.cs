@@ -12,12 +12,5 @@ namespace PatientManagementSystem.Auth
         public PatientManagementSystemIdentityDBContext() : base("PatientManagementSystemDatabase")
         {
         }
-
-        public static PatientManagementSystemIdentityDBContext Create()
-        {
-            return new PatientManagementSystemIdentityDBContext();
-        }
     }
-
-    public class PatientManagementSystemUserManager : UserM
 }
