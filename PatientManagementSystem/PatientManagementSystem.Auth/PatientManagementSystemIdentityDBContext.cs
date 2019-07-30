@@ -7,11 +7,17 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace PatientManagementSystem.Auth
 {
-    class PatientManagementSystemIdentityDBContext : IdentityDbContext<PatientManagementSystemIdentityUser>
+    public class PatientManagementSystemIdentityDBContext : IdentityDbContext<PatientManagementSystemIdentityUser>
     {
         public PatientManagementSystemIdentityDBContext() : base("PatientManagementSystemDatabase")
         {
+        }
 
+        public static PatientManagementSystemIdentityDBContext Create()
+        {
+            return new PatientManagementSystemIdentityDBContext();
         }
     }
+
+    public class PatientManagementSystemUserManager : UserM
 }
