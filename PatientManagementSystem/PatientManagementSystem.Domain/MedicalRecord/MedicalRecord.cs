@@ -2,7 +2,7 @@
 
 namespace PatientManagementSystem.Domain
 {
-    class MedicalRecord : BaseEntity
+    public class MedicalRecord : BaseEntity
     {
         public IList<MedicalRecordEntry> MedicalRecordEntries { get; set; }
     }

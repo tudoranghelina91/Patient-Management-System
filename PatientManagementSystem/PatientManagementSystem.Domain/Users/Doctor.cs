@@ -1,6 +1,6 @@
 ﻿namespace PatientManagementSystem.Domain
 {
-    class Doctor : User
+    public class Doctor : User
     {
         public enum Specialty
         {

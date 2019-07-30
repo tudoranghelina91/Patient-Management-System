@@ -59,7 +59,6 @@
     <Compile Include="MedicalRecord\MedicalRecordEntry.cs" />
     <Compile Include="MedicalRecord\Medication.cs" />
     <Compile Include="MedicalRecord\Treatment.cs" />
-    <Compile Include="PatientManagementSystemContext.cs" />
     <Compile Include="Users\Admin.cs" />
     <Compile Include="BaseEntity.cs" />
     <Compile Include="MedicalRecord\Diagnosis.cs" />

@@ -2,7 +2,7 @@
 
 namespace PatientManagementSystem.Domain
 {
-    class MedicalRecordEntry : BaseEntity
+    public class MedicalRecordEntry : BaseEntity
     {
         public DateTime TimeEntry { get; set; }
         public string ReasonForVisit { get; set; }

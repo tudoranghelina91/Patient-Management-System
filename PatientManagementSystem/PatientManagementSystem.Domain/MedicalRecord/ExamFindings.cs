@@ -1,6 +1,6 @@
 ﻿namespace PatientManagementSystem.Domain
 {
-    class ExamFindings : BaseEntity
+    public class ExamFindings : BaseEntity
     {
         public string Positive { get; set; }
         public string RelevantNegative { get; set; }

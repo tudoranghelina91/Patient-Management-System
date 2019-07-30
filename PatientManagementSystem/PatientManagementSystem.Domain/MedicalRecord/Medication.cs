@@ -2,7 +2,7 @@
 
 namespace PatientManagementSystem.Domain
 {
-    class Medication : BaseEntity
+    public class Medication : BaseEntity
     {
         public IList<string> Administered { get; set; }
         public IList<string> Prescribed { get; set; }

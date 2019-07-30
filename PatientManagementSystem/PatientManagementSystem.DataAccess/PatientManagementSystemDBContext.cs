@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
+using PatientManagementSystem.Domain;
 
-namespace PatientManagementSystem.Domain
+namespace PatientManagementSystem.DataAccess
 {
-    public class PatientManagementSystemContext : DbContext
+    public class PatientManagementSystemDBContext : DbContext
     {
-        public PatientManagementSystemContext() : base()
+        public PatientManagementSystemDBContext() : base()
         {
 
         }
