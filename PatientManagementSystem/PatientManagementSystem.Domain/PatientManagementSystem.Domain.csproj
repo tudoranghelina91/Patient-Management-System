@@ -54,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AppUser.cs" />
     <Compile Include="MedicalRecord\ExamFindings.cs" />
     <Compile Include="MedicalRecord\MedicalRecordEntry.cs" />
     <Compile Include="MedicalRecord\Medication.cs" />
