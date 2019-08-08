@@ -5,7 +5,7 @@ namespace PatientManagementSystem.DataAccess
 {
     public class PatientManagementSystemDBContext : DbContext
     {
-        public PatientManagementSystemDBContext() : base("PatientManagementSystemDatabase")
+        public PatientManagementSystemDBContext() : base("PatientManagementSystemDBContext")
         {
 
         }
