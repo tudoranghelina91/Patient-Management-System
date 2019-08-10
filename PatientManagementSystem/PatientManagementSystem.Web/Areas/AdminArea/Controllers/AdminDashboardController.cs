@@ -7,7 +7,6 @@ using PatientManagementSystem.Web.Areas.AdminArea.Models;
 using PatientManagementSystem.Web.Models;
 using System.Linq;
 using Microsoft.AspNet.Identity.EntityFramework;
-using System.Collections.Generic;
 
 namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
 {

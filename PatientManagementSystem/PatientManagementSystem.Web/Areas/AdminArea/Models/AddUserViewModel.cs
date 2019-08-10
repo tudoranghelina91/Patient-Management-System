@@ -1,12 +1,6 @@
-﻿using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using PatientManagementSystem.Web.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Web.Mvc;
-using System.Web.Security;
-//using PatientManagementSystem.Web.Models;
 using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
 
 namespace PatientManagementSystem.Web.Areas.AdminArea.Models
