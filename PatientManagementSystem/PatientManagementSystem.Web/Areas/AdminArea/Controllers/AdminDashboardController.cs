@@ -13,6 +13,7 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
     public class AdminDashboardController : Controller
     {
         // GET: AdminArea/AdminDashboard
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();
@@ -24,13 +25,11 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
         public AdminDashboardController()
         {
         }
-
         public AdminDashboardController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
         public ApplicationSignInManager SignInManager
         {
             get
@@ -42,7 +41,6 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
                 _signInManager = value;
             }
         }
-
         public ApplicationUserManager UserManager
         {
             get
@@ -54,7 +52,7 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
                 _userManager = value;
             }
         }
-
+        [Authorize(Roles = "Admin")]
         private void GrabRolesFromDb(ref AddUserViewModel model)
         {
             var context = new ApplicationDbContext();
@@ -70,13 +68,14 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
         //
         // GET: /Account/Register
         //[AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public ActionResult AddUser()
         {
             var model = new AddUserViewModel();
             GrabRolesFromDb(ref model);
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)
@@ -89,6 +88,7 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
         // POST: /Account/Register
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> AddUser(AddUserViewModel model)
         {
             if (ModelState.IsValid)
