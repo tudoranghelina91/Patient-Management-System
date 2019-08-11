@@ -1,6 +1,8 @@
-﻿namespace PatientManagementSystem.Repositories.MedicalRecord
+﻿using PatientManagementSystem.Domain;
+
+namespace PatientManagementSystem.Repositories
 {
-    interface IMedicationRepository : IBaseRepository<MedicationRepository>
+    interface IMedicationRepository : IBaseRepository<Medication>
     {
     }
 }

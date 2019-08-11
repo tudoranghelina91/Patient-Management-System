@@ -1,6 +1,8 @@
-﻿namespace PatientManagementSystem.Repositories.MedicalRecord
+﻿using PatientManagementSystem.Domain;
+
+namespace PatientManagementSystem.Repositories
 {
-    interface IExamFindingsRepository : IBaseRepository<ExamFindingsRepository>
+    interface IExamFindingsRepository : IBaseRepository<ExamFindings>
     {
     }
 }

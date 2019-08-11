@@ -7,7 +7,7 @@ namespace PatientManagementSystem.Web.Controllers
         public ActionResult Index()
         {
             if (User.IsInRole("Admin"))
-                return RedirectToActionPermanent("Index", "AdminDashboard", new { area = "AdminArea" });
+                return RedirectToActionPermanent("Index", "Home", new { area = "AdminArea" });
             return View();
         }
 

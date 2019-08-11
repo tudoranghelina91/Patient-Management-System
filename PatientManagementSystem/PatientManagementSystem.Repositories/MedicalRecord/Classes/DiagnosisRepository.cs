@@ -1,33 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using PatientManagementSystem.Domain;
 
-namespace PatientManagementSystem.Repositories.MedicalRecord
+namespace PatientManagementSystem.Repositories
 {
-    class DiagnosisRepository : IDiagnosisRepository
+    class DiagnosisRepository : Context, IDiagnosisRepository
     {
-        public void Create()
+        public void Add(Diagnosis diagnosis)
         {
-            throw new NotImplementedException();
+            context.Diagnoses.Add(diagnosis);
+            context.SaveChanges();
         }
 
-        public void Delete()
+        public IList<Diagnosis> GetAll()
         {
-            throw new NotImplementedException();
+            return context.Diagnoses.ToList();
         }
 
-        public IList<IDiagnosisRepository> GetAll()
+        public Diagnosis GetById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public IDiagnosisRepository GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(int id)
-        {
-            throw new NotImplementedException();
+            return context.Diagnoses.FirstOrDefault(d => d.Id == id);
         }
     }
 }

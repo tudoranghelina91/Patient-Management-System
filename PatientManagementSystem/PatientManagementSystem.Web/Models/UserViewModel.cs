@@ -1,9 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 
-namespace PatientManagementSystem.Domain
+namespace PatientManagementSystem.Web.Models
 {
-    public abstract class User : BaseEntity
+    public abstract class UserViewModel
     {
+        [Required]
+        public int Id { get; set; }
         [Required]
         public string IdentityId { get; set; }
         [Required]

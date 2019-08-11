@@ -2,6 +2,8 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using Owin;
+using PatientManagementSystem.DataAccess;
+using PatientManagementSystem.Domain;
 using PatientManagementSystem.Web.Models;
 
 [assembly: OwinStartupAttribute(typeof(PatientManagementSystem.Web.Startup))]
@@ -15,16 +17,19 @@ namespace PatientManagementSystem.Web
             CreateRolesAndUsers();
         }
 
+        public static bool setupComplete = true;
+
         private void CreateRolesAndUsers()
         {
-            ApplicationDbContext context = new ApplicationDbContext();
-
-            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            ApplicationDbContext identityDbContext = new ApplicationDbContext();
+            PatientManagementSystemDBContext patientManagementDbContext = new PatientManagementSystemDBContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(identityDbContext));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(identityDbContext));
 
             // creating a default admin role and user
             if (!roleManager.RoleExists("Admin"))
             {
+                setupComplete = false;
                 // create admin role
                 var role = new IdentityRole();
                 role.Name = "Admin";
@@ -35,13 +40,16 @@ namespace PatientManagementSystem.Web
                 user.UserName = "admin";
                 user.Email = "admin@patientmanagementsystem.com";
 
-                string password = "A@Z200711";
+                string password = "Admin@69!";
                 var chkUser = userManager.Create(user, password);
 
                 if (chkUser.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "Admin");
+                    // Seed admin data
+                    RunSetup(user, patientManagementDbContext);
                 }
+
             }
 
             // Create doctor role
@@ -59,6 +67,26 @@ namespace PatientManagementSystem.Web
                 role.Name = "Patient";
                 roleManager.Create(role);
             }
+        }
+
+        private void RunSetup(ApplicationUser user, PatientManagementSystemDBContext patientManagementDbContext)
+        {
+            Admin admin = new Admin();
+            admin.IdentityId = user.Id;
+            admin.UserName = user.UserName;
+            admin.Email = user.Email;
+            admin.FirstName = user.UserName;
+            admin.LastName = user.UserName;
+            admin.Number = 0;
+            admin.SSN = new int[] { 1, 2, 3, 4, 5, 6 };
+            admin.State = "none";
+            admin.Street = "none";
+            admin.ApartmentNumber = 0;
+            admin.BuildingNumber = 0;
+            admin.City = "None";
+            admin.Country = "None";
+            patientManagementDbContext.Admins.Add(admin);
+            patientManagementDbContext.SaveChanges();
         }
     }
 }

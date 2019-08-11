@@ -7,12 +7,15 @@ using PatientManagementSystem.Web.Areas.AdminArea.Models;
 using PatientManagementSystem.Web.Models;
 using System.Linq;
 using Microsoft.AspNet.Identity.EntityFramework;
+using PatientManagementSystem.Domain;
+using PatientManagementSystem.DataAccess;
+using System.Collections.Generic;
 
 namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
 {
-    public class AdminDashboardController : Controller
+    public class UsersController : Controller
     {
-        // GET: AdminArea/AdminDashboard
+        // GET: AdminArea/UserDetails
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
@@ -21,14 +24,17 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private PatientManagementSystemDBContext _patientManagementSystemDBContext;
 
-        public AdminDashboardController()
-        {
-        }
-        public AdminDashboardController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public UsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+        }
+
+        public UsersController()
+        {
+
         }
         public ApplicationSignInManager SignInManager
         {
@@ -52,6 +58,21 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
                 _userManager = value;
             }
         }
+
+        public PatientManagementSystemDBContext PatientManagementSystemDBContext
+        {
+            get
+            {
+                return _patientManagementSystemDBContext;
+            }
+
+            set
+            {
+                _patientManagementSystemDBContext = new PatientManagementSystemDBContext();
+            }
+        }
+        
+
         [Authorize(Roles = "Admin")]
         private void GrabRolesFromDb(ref AddUserViewModel model)
         {
@@ -69,7 +90,7 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
         // GET: /Account/Register
         //[AllowAnonymous]
         [Authorize(Roles = "Admin")]
-        public ActionResult AddUser()
+        public ActionResult Add()
         {
             var model = new AddUserViewModel();
             GrabRolesFromDb(ref model);
@@ -89,7 +110,7 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = "Admin")]
-        public async Task<ActionResult> AddUser(AddUserViewModel model)
+        public async Task<ActionResult> Add(AddUserViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -99,9 +120,29 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
                 if (result.Succeeded)
                 {
                     result = await UserManager.AddToRoleAsync(user.Id, model.Role);
-                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                    
-                    return RedirectToAction("Index", "AdminDashboard");
+
+                    if (result.Succeeded)
+                    {
+                        if (model.Role == "Doctor")
+                        {
+                            Doctor doctor = new Doctor();
+
+                            PatientManagementSystemDBContext.Doctors.Add(doctor);
+                        }
+
+                        if (model.Role == "Patient")
+                        {
+                            Patient patient = new Patient();
+                            PatientManagementSystemDBContext.Patients.Add(patient);
+                        }
+
+                        if (model.Role == "Admin")
+                        {
+                            Admin admin = new Admin();
+                            PatientManagementSystemDBContext.Admins.Add(admin);
+                        }
+                        return RedirectToAction("Index", "AdminDashboard");
+                    }
                 }
                 AddErrors(result);
             }

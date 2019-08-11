@@ -1,6 +1,8 @@
-﻿namespace PatientManagementSystem.Repositories
+﻿using PatientManagementSystem.Domain;
+
+namespace PatientManagementSystem.Repositories
 {
-    interface IDoctorRepository : IUserRepository
+    interface IDoctorRepository : IBaseRepository<Doctor>
     {
     }
 }

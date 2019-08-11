@@ -4,7 +4,8 @@ namespace PatientManagementSystem.Services
 {
     interface IICDCodeService
     {
-        string GetICDCode(string ICDCode);
+        string GetByICDCode(string ICDCode);
+        string GetByName(string ICDName);
         Diagnosis Deserialize(string ICDCode);
     }
 }

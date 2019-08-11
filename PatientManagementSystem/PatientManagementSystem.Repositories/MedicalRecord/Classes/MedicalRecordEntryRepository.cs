@@ -1,33 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using PatientManagementSystem.Domain;
 
-namespace PatientManagementSystem.Repositories.MedicalRecord
+namespace PatientManagementSystem.Repositories
 {
-    class MedicalRecordEntryRepository : IMedicalRecordEntryRepository
+    class MedicalRecordEntryRepository : Context, IMedicalRecordEntryRepository
     {
-        public void Create()
+        public void Add(MedicalRecordEntry medicalRecordEntry)
         {
-            throw new NotImplementedException();
+            context.MedicalRecordEntries.Add(medicalRecordEntry);
         }
 
-        public void Delete()
+        public IList<MedicalRecordEntry> GetAll()
         {
-            throw new NotImplementedException();
+            return context.MedicalRecordEntries.ToList();
         }
 
-        public IList<MedicalRecordEntryRepository> GetAll()
+        public MedicalRecordEntry GetById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public MedicalRecordEntryRepository GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(int id)
-        {
-            throw new NotImplementedException();
+            return context.MedicalRecordEntries.FirstOrDefault(m => m.Id == id);
         }
     }
 }

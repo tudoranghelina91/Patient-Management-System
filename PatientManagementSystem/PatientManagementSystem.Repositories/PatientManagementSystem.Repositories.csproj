@@ -31,7 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -41,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Context.cs" />
     <Compile Include="MedicalRecord\Classes\ExamFindingsRepository.cs" />
     <Compile Include="MedicalRecord\Classes\DiagnosisRepository.cs" />
     <Compile Include="MedicalRecord\Interfaces\IDiagnosisRepository.cs" />
@@ -54,23 +62,27 @@
     <Compile Include="MedicalRecord\Classes\MedicationRepository.cs" />
     <Compile Include="MedicalRecord\Classes\TreatmentRepository.cs" />
     <Compile Include="Users\Classes\AdminRepository.cs" />
+    <Compile Include="Users\Classes\BaseRepository.cs" />
     <Compile Include="Users\Classes\DoctorRepository.cs" />
     <Compile Include="Users\Interfaces\IAdminRepository.cs" />
-    <Compile Include="IBaseRepository.cs" />
+    <Compile Include="Users\Interfaces\IBaseRepository.cs" />
     <Compile Include="Users\Interfaces\IDoctorRepository.cs" />
     <Compile Include="Users\Interfaces\IPatientRepository.cs" />
-    <Compile Include="Users\Interfaces\IUserRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\Classes\PatientRepository.cs" />
-    <Compile Include="Users\Classes\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PatientManagementSystem.DataAccess\PatientManagementSystem.DataAccess.csproj">
+      <Project>{047BD6FA-A874-4130-B499-2A7912BA7C18}</Project>
+      <Name>PatientManagementSystem.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PatientManagementSystem.Domain\PatientManagementSystem.Domain.csproj">
       <Project>{8970166f-095a-4705-b55a-f9c2348d4fa2}</Project>
       <Name>PatientManagementSystem.Domain</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
