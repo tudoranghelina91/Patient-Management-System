@@ -2,7 +2,7 @@
 
 namespace PatientManagementSystem.Repositories
 {
-    interface IExamFindingsRepository : IBaseRepository<ExamFindings>
+    public interface IExamFindingsRepository : IBaseRepository<ExamFindings>
     {
     }
 }

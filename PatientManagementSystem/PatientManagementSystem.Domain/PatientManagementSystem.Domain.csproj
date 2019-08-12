@@ -62,7 +62,6 @@
     <Compile Include="BaseEntity.cs" />
     <Compile Include="MedicalRecord\Diagnosis.cs" />
     <Compile Include="Users\Doctor.cs" />
-    <Compile Include="MedicalRecord\MedicalRecord.cs" />
     <Compile Include="Users\Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Users\User.cs" />

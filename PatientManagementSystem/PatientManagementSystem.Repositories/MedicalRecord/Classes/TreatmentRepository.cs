@@ -5,7 +5,7 @@ using PatientManagementSystem.Domain;
 
 namespace PatientManagementSystem.Repositories
 {
-    class TreatmentRepository : Context, ITreatmentRepository
+    public class TreatmentRepository : Context, ITreatmentRepository
     {
         public void Add(Treatment treatment)
         {

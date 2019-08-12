@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PatientManagementSystem.Web.Models
 {
-    public class DiagnosisViewModel
+    public class DiagnosisViewModel : BaseViewModel
     {
         public string Name { get; set; }
         public string[] Inclusions { get; set; }

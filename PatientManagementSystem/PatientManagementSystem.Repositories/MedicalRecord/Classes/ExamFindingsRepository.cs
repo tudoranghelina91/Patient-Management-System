@@ -5,7 +5,7 @@ using PatientManagementSystem.Domain;
 
 namespace PatientManagementSystem.Repositories
 {
-    class ExamFindingsRepository : Context, IExamFindingsRepository
+    public class ExamFindingsRepository : Context, IExamFindingsRepository
     {
         public void Add(ExamFindings examFindings)
         {

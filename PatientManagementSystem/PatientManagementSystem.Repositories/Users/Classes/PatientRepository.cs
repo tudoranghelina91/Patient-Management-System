@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace PatientManagementSystem.Repositories
 {
-    class PatientRepository : Context, IPatientRepository
+    public class PatientRepository : Context, IPatientRepository
     {
         public void Add(Patient patient)
         {

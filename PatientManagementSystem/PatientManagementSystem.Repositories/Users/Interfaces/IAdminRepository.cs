@@ -2,7 +2,7 @@
 
 namespace PatientManagementSystem.Repositories
 {
-    interface IAdminRepository : IBaseRepository<Admin>
+    public interface IAdminRepository : IBaseRepository<Admin>
     {
     }
 }

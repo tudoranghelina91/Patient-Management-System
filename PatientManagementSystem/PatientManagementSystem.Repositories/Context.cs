@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PatientManagementSystem.Repositories
 {
-    abstract class Context
+    public abstract class Context
     {
         protected PatientManagementSystemDBContext context = new PatientManagementSystemDBContext();
     }

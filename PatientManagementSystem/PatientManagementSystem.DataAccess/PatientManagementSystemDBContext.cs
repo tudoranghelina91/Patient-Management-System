@@ -15,7 +15,6 @@ namespace PatientManagementSystem.DataAccess
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Diagnosis> Diagnoses { get; set; }
         public DbSet<ExamFindings> ExamFindings { get; set; }
-        public DbSet<MedicalRecord> MedicalRecords { get; set; }
         public DbSet<MedicalRecordEntry> MedicalRecordEntries { get; set; }
         public DbSet<Medication> Medications { get; set; }
         public DbSet<Treatment> Treatments { get; set; }

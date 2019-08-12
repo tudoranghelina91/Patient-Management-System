@@ -54,11 +54,9 @@
     <Compile Include="MedicalRecord\Interfaces\IDiagnosisRepository.cs" />
     <Compile Include="MedicalRecord\Interfaces\IExamFindingsRepository.cs" />
     <Compile Include="MedicalRecord\Interfaces\IMedicalRecordEntryRepository.cs" />
-    <Compile Include="MedicalRecord\Interfaces\IMedicalRecordRepository.cs" />
     <Compile Include="MedicalRecord\Interfaces\IMedicationRepository.cs" />
     <Compile Include="MedicalRecord\Interfaces\ITreatmentRepository.cs" />
     <Compile Include="MedicalRecord\Classes\MedicalRecordEntryRepository.cs" />
-    <Compile Include="MedicalRecord\Classes\MedicalRecordRepository.cs" />
     <Compile Include="MedicalRecord\Classes\MedicationRepository.cs" />
     <Compile Include="MedicalRecord\Classes\TreatmentRepository.cs" />
     <Compile Include="Users\Classes\AdminRepository.cs" />

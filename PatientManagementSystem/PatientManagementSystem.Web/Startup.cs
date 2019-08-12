@@ -77,12 +77,10 @@ namespace PatientManagementSystem.Web
             admin.Email = user.Email;
             admin.FirstName = user.UserName;
             admin.LastName = user.UserName;
-            admin.Number = 0;
-            admin.SSN = new int[] { 1, 2, 3, 4, 5, 6 };
+            admin.Address1 = "none";
+            admin.Address2 = "none";
+            admin.SSN = "123456";
             admin.State = "none";
-            admin.Street = "none";
-            admin.ApartmentNumber = 0;
-            admin.BuildingNumber = 0;
             admin.City = "None";
             admin.Country = "None";
             patientManagementDbContext.Admins.Add(admin);

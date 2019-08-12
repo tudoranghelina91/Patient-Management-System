@@ -2,7 +2,7 @@
 
 namespace PatientManagementSystem.Repositories
 {
-    interface ITreatmentRepository : IBaseRepository<Treatment>
+    public interface ITreatmentRepository : IBaseRepository<Treatment>
     {
     }
 }

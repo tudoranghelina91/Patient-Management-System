@@ -7,24 +7,30 @@ using PatientManagementSystem.Web.Areas.AdminArea.Models;
 using PatientManagementSystem.Web.Models;
 using System.Linq;
 using Microsoft.AspNet.Identity.EntityFramework;
-using PatientManagementSystem.Domain;
-using PatientManagementSystem.DataAccess;
 using System.Collections.Generic;
+using PatientManagementSystem.Repositories;
+using System;
 
 namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
 {
+
     public class UsersController : Controller
     {
+        IAdminRepository adminRepository = new AdminRepository();
+        IPatientRepository patientRepository = new PatientRepository();
+        IDoctorRepository doctorRepository = new DoctorRepository();
+        IMedicalRecordEntryRepository medicalRecordEntryRepository = new MedicalRecordEntryRepository();
+
         // GET: AdminArea/UserDetails
         [Authorize(Roles = "Admin")]
         public ActionResult Index()
-        {
-            return View();
+        { 
+            IEnumerable<ApplicationUser> users = UserManager.Users.ToList();
+            return View(users);
         }
 
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-        private PatientManagementSystemDBContext _patientManagementSystemDBContext;
 
         public UsersController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -59,20 +65,6 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
             }
         }
 
-        public PatientManagementSystemDBContext PatientManagementSystemDBContext
-        {
-            get
-            {
-                return _patientManagementSystemDBContext;
-            }
-
-            set
-            {
-                _patientManagementSystemDBContext = new PatientManagementSystemDBContext();
-            }
-        }
-        
-
         [Authorize(Roles = "Admin")]
         private void GrabRolesFromDb(ref AddUserViewModel model)
         {
@@ -84,6 +76,15 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
             {
                 model.Roles.Add(new SelectListItem { Value = r.Name, Text = r.Name });
             }
+        }
+
+        private string getRoleId(AddUserViewModel model)
+        {
+            var context = new ApplicationDbContext();
+            var roleStore = new RoleStore<IdentityRole>(context);
+            var roleManager = new RoleManager<IdentityRole>(roleStore);
+
+            return roleManager.Roles.FirstOrDefault(r => r.Name == model.Role).Id;
         }
 
         //
@@ -105,6 +106,73 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
             }
         }
 
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreateAdmin()
+        {
+            AdminViewModel adminViewModel = new AdminViewModel();
+            adminViewModel.IdentityId = TempData["IdentityId"] as string;
+            adminViewModel.UserName = TempData["Username"] as string;
+            adminViewModel.Email = TempData["Email"] as string;
+            return View(adminViewModel);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreateDoctor()
+        {
+            DoctorViewModel doctorViewModel = new DoctorViewModel();
+            doctorViewModel.IdentityId = TempData["IdentityId"] as string;
+            doctorViewModel.UserName = TempData["Username"] as string;
+            doctorViewModel.Email = TempData["Email"] as string;
+            return View(doctorViewModel);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreatePatient()
+        {
+            PatientViewModel patientViewModel = new PatientViewModel();
+            patientViewModel.IdentityId = TempData["IdentityId"] as string;
+            patientViewModel.UserName = TempData["Username"] as string;
+            patientViewModel.Email = TempData["Email"] as string;
+            return View(patientViewModel);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreateAdmin(AdminViewModel adminViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                adminRepository.Add(adminViewModel.ToDomainModel());
+                return RedirectToAction("Index");
+            }
+
+            return View(adminViewModel);
+        }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreateDoctor(DoctorViewModel doctorViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                doctorRepository.Add(doctorViewModel.ToDomainModel());
+                return RedirectToAction("Index");
+            }
+
+            return View(doctorViewModel);
+        }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public ActionResult CreatePatient(PatientViewModel patientViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                patientRepository.Add(patientViewModel.ToDomainModel());
+                return RedirectToAction("Index");
+            }
+
+            return View(patientViewModel);
+        }
+
         //
         // POST: /Account/Register
         [HttpPost]
@@ -115,7 +183,6 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
-                //user.Roles.Add(model.Role);
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -123,25 +190,23 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
 
                     if (result.Succeeded)
                     {
+                        TempData["IdentityId"] = getRoleId(model);
+                        TempData["Email"] = model.Email;
+                        TempData["Username"] = model.UserName;
+                        if (model.Role == "Admin")
+                        {
+                            return RedirectToAction("CreateAdmin", "Users");
+                        }
+
                         if (model.Role == "Doctor")
                         {
-                            Doctor doctor = new Doctor();
-
-                            PatientManagementSystemDBContext.Doctors.Add(doctor);
+                            return RedirectToAction("CreateDoctor", "Users");
                         }
 
                         if (model.Role == "Patient")
                         {
-                            Patient patient = new Patient();
-                            PatientManagementSystemDBContext.Patients.Add(patient);
+                            return RedirectToAction("CreatePatient", "Users");
                         }
-
-                        if (model.Role == "Admin")
-                        {
-                            Admin admin = new Admin();
-                            PatientManagementSystemDBContext.Admins.Add(admin);
-                        }
-                        return RedirectToAction("Index", "AdminDashboard");
                     }
                 }
                 AddErrors(result);

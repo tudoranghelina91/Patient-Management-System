@@ -5,7 +5,7 @@ using PatientManagementSystem.Domain;
 
 namespace PatientManagementSystem.Repositories
 {
-    class AdminRepository : Context, IAdminRepository
+    public class AdminRepository : Context, IAdminRepository
     {
         public void Add(Admin admin)
         {

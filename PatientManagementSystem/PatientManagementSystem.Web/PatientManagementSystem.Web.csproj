@@ -171,6 +171,7 @@
     <Compile Include="Areas\AdminArea\AdminAreaAreaRegistration.cs" />
     <Compile Include="Areas\AdminArea\Controllers\HomeController.cs" />
     <Compile Include="Areas\AdminArea\Controllers\UsersController.cs" />
+    <Compile Include="Areas\AdminArea\Controllers\ViewModelExtensions.cs" />
     <Compile Include="Areas\AdminArea\Models\AddUserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -180,13 +181,13 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\BaseViewModel.cs" />
     <Compile Include="Models\DiagnosisViewModel.cs" />
     <Compile Include="Models\DoctorViewModel.cs" />
     <Compile Include="Models\ExamFindingsViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MedicalRecordEntryViewModel.cs" />
-    <Compile Include="Models\MedicalRecordViewModel.cs" />
     <Compile Include="Models\PatientViewModel.cs" />
     <Compile Include="Models\TreatmentViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -210,6 +211,9 @@
     <Content Include="Areas\AdminArea\Views\Home\Index.cshtml" />
     <Content Include="Areas\AdminArea\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\AdminArea\Views\Users\Index.cshtml" />
+    <Content Include="Areas\AdminArea\Views\Users\CreateAdmin.cshtml" />
+    <Content Include="Areas\AdminArea\Views\Users\CreateDoctor.cshtml" />
+    <Content Include="Areas\AdminArea\Views\Users\CreatePatient.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -280,6 +284,10 @@
     <ProjectReference Include="..\PatientManagementSystem.Domain\PatientManagementSystem.Domain.csproj">
       <Project>{8970166F-095A-4705-B55A-F9C2348D4FA2}</Project>
       <Name>PatientManagementSystem.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PatientManagementSystem.Repositories\PatientManagementSystem.Repositories.csproj">
+      <Project>{268D457E-259E-41BB-97AA-0F04AA0DEDF5}</Project>
+      <Name>PatientManagementSystem.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

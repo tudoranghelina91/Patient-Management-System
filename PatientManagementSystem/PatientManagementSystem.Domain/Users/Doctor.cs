@@ -1,4 +1,6 @@
-﻿namespace PatientManagementSystem.Domain
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace PatientManagementSystem.Domain
 {
     public class Doctor : User
     {
@@ -59,8 +61,11 @@
             VascularSurgery,
             Venereology,
         }
+        [Required]
         public string University { get; set; }
+        [Required]
         public Specialty Specialization { get; set; }
+        [Required]
         public string LicenseNo { get; set; }
     }
 }

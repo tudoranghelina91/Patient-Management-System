@@ -2,7 +2,7 @@
 
 namespace PatientManagementSystem.Repositories
 {
-    interface IMedicalRecordEntryRepository : IBaseRepository<MedicalRecordEntry>
+    public interface IMedicalRecordEntryRepository : IBaseRepository<MedicalRecordEntry>
     {
     }
 }
