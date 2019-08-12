@@ -173,6 +173,7 @@
     <Compile Include="Areas\AdminArea\Controllers\UsersController.cs" />
     <Compile Include="Areas\AdminArea\Controllers\ViewModelExtensions.cs" />
     <Compile Include="Areas\AdminArea\Models\AddUserViewModel.cs" />
+    <Compile Include="Areas\DoctorArea\DoctorAreaAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -214,6 +215,7 @@
     <Content Include="Areas\AdminArea\Views\Users\CreateAdmin.cshtml" />
     <Content Include="Areas\AdminArea\Views\Users\CreateDoctor.cshtml" />
     <Content Include="Areas\AdminArea\Views\Users\CreatePatient.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\web.config" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -262,6 +264,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\DoctorArea\Controllers\" />
+    <Folder Include="Areas\DoctorArea\Models\" />
+    <Folder Include="Areas\DoctorArea\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

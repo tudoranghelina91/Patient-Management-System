@@ -22,6 +22,13 @@ namespace PatientManagementSystem.Web
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
                 namespaces: new string[] { "PatientManagementSystem.Web.Areas.AdminArea.Controllers" }
             );
+
+            routes.MapRoute(
+                name: "DoctorArea",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces: new string[] { "PatientManagementSystem.Web.Areas.DoctorArea.Controllers" }
+            );
         }
     }
 }
