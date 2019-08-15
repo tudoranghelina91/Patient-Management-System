@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using PatientManagementSystem.DataAccess;
 using PatientManagementSystem.Domain;
 
 namespace PatientManagementSystem.Repositories

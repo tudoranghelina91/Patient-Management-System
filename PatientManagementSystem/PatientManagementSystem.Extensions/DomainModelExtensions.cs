@@ -1,11 +1,8 @@
 ﻿using PatientManagementSystem.Domain;
 using PatientManagementSystem.Web.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace PatientManagementSystem.Web.Controllers
+namespace PatientManagementSystem.Extensions
 {
     public static class DomainModelExtensions
     {
@@ -99,7 +96,7 @@ namespace PatientManagementSystem.Web.Controllers
             medicalRecordEntryViewModel.RecommendedVisitDate = medicalRecordEntry.RecommendedVisitDate;
             medicalRecordEntryViewModel.TimeEntry = medicalRecordEntry.TimeEntry;
             medicalRecordEntryViewModel.ExamFindings = medicalRecordEntry.ExamFindings.ToViewModel();
-            medicalRecordEntryViewModel.Diagnosis = medicalRecordEntry.Diagnosis.ToViewModel();
+            medicalRecordEntryViewModel.Diagnosis = medicalRecordEntry.Diagnosis;
             medicalRecordEntryViewModel.Treatment = medicalRecordEntry.Treatment.ToViewModel();
 
             return medicalRecordEntryViewModel;

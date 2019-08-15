@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<PatientManagementSystem.Web.Models.MedicalRecordEntryViewModel>
-
+<h4>@TempData["patientFirstName"] @TempData["patientLastName"] Medical Record</h4>
 <p>
     @Html.ActionLink("Create New", "Create", new { patientId = TempData["patientId"] })
 </p>
@@ -43,3 +43,5 @@
 }
 
 </table>
+
+@Html.ActionLink("Back to patient", "Details", "Patients", new { id = TempData["patientId"] }, null)

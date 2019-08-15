@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using CompareAttribute = System.ComponentModel.DataAnnotations.CompareAttribute;
 
-namespace PatientManagementSystem.Web.Areas.AdminArea.Models
+namespace PatientManagementSystem.Web.Models
 {
     public class AddUserViewModel
     {   

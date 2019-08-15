@@ -3,13 +3,12 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using PatientManagementSystem.Web.Areas.AdminArea.Models;
 using PatientManagementSystem.Web.Models;
 using System.Linq;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Collections.Generic;
 using PatientManagementSystem.Repositories;
-using System;
+using PatientManagementSystem.Extensions;
 
 namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
 {

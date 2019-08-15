@@ -1,12 +1,8 @@
 ﻿using PatientManagementSystem.Repositories;
-using PatientManagementSystem.Web.Areas.AdminArea.Controllers;
-using PatientManagementSystem.Web.Controllers;
 using PatientManagementSystem.Web.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using PatientManagementSystem.Extensions;
 
 namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
 {
@@ -15,22 +11,38 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         IMedicalRecordEntryRepository medicalRecordEntryRepository = new MedicalRecordEntryRepository();
         IPatientRepository patientRepository = new PatientRepository();
         IExamFindingsRepository examFindingsRepository = new ExamFindingsRepository();
-        IDiagnosisRepository diagnosisRepository = new DiagnosisRepository();
-        IMedicationRepository medicationRepository = new MedicationRepository();
-        ITreatmentRepository treatmentRepository = new TreatmentRepository();
         // GET: DoctorArea/MedicalRecords
         [Authorize(Roles = "Doctor")]
         public ActionResult Index(int patientId)
         {
+            //TempData.Clear();
+
+
             IList<MedicalRecordEntryViewModel> medicalRecord = new List<MedicalRecordEntryViewModel>();
             medicalRecord = medicalRecordEntryRepository.GetForPatient(patientId).ToViewModel();
             return View(medicalRecord);
         }
 
+        private void AddPatientToTempData(int patientId)
+        {
+            if (!TempData.Keys.Contains("patientFirstName"))
+            {
+                TempData.Add("patientFirstName", patientRepository.GetById(patientId).FirstName);
+            }
+            if (!TempData.Keys.Contains("patientLastName"))
+            {
+                TempData.Add("patientLastName", patientRepository.GetById(patientId).LastName);
+            }
+            if (!TempData.Keys.Contains("patientId"))
+            {
+                TempData.Add("patientId", patientId);
+            }
+        }
+
         [Authorize(Roles = "Doctor")]
         public ActionResult Create(int patientId)
         {
-            TempData.Add("patientId", patientId);
+            AddPatientToTempData(patientId);
             MedicalRecordEntryViewModel medicalRecordEntryViewModel = new MedicalRecordEntryViewModel { PatientViewModel = patientRepository.GetById(patientId).ToViewModel() };
             return View(medicalRecordEntryViewModel);
         }
@@ -43,13 +55,12 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
             if (ModelState.IsValid)
             {
                 examFindingsRepository.Add(medicalRecordEntryViewModel.ExamFindings.ToDomainModel());
-                diagnosisRepository.Add(medicalRecordEntryViewModel.Diagnosis.ToDomainModel());
 
                 medicalRecordEntryRepository.Add(medicalRecordEntryViewModel.ToDomainModel());
                 return RedirectToAction("Index", new { patientId = medicalRecordEntryViewModel.PatientViewModel.Id });
             }
             TempData.Clear();
-            TempData.Add("patientId", medicalRecordEntryViewModel.PatientViewModel.Id);
+            AddPatientToTempData(medicalRecordEntryViewModel.PatientViewModel.Id);
             return View(medicalRecordEntryViewModel);
         }
     }

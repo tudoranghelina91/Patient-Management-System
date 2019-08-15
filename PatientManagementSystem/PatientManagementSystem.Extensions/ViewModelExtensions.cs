@@ -1,8 +1,8 @@
-﻿using PatientManagementSystem.Web.Models;
-using PatientManagementSystem.Domain;
+﻿using PatientManagementSystem.Domain;
+using PatientManagementSystem.Web.Models;
 using System.Collections.Generic;
 
-namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
+namespace PatientManagementSystem.Extensions
 {
     public static class ViewModelExtensions
     {
@@ -83,7 +83,7 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
             medicalRecordEntry.ExaminationScope = medicalRecordEntryViewModel.ExaminationScope;
             medicalRecordEntry.ReasonForVisit = medicalRecordEntryViewModel.ReasonForVisit;
             medicalRecordEntry.RecommendedVisitDate = medicalRecordEntryViewModel.RecommendedVisitDate;
-            medicalRecordEntry.Diagnosis = medicalRecordEntryViewModel.Diagnosis.ToDomainModel();
+            medicalRecordEntry.Diagnosis = medicalRecordEntryViewModel.Diagnosis;
             medicalRecordEntry.ExamFindings = medicalRecordEntryViewModel.ExamFindings.ToDomainModel();
             medicalRecordEntry.Patient = medicalRecordEntryViewModel.PatientViewModel.ToDomainModel();
             medicalRecordEntry.TimeEntry = medicalRecordEntryViewModel.TimeEntry;

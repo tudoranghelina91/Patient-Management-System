@@ -1,11 +1,7 @@
-﻿using PatientManagementSystem.Domain;
+﻿using PatientManagementSystem.Extensions;
 using PatientManagementSystem.Repositories;
-using PatientManagementSystem.Web.Controllers;
 using PatientManagementSystem.Web.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
@@ -18,7 +14,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         [Authorize(Roles = "Doctor")]
         public ActionResult Index()
         {
-
+            TempData.Clear();
             // parse to patient entity to view model
             IList<PatientViewModel> patients = patientRepository.GetAll().ToViewModel();
             return View(patients);

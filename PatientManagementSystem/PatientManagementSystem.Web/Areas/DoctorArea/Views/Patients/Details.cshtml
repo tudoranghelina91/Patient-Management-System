@@ -4,7 +4,7 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Details for @Model.FirstName @Model.LastName</h2>
 
 <div>
     <h4>PatientViewModel</h4>
@@ -109,7 +109,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
     @Html.ActionLink("Medical Record", "Index", "MedicalRecords", new { patientId = Model.Id }, null)
 </p>

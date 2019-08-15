@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PatientManagementSystem.Domain
@@ -11,7 +10,7 @@ namespace PatientManagementSystem.Domain
         public string ReasonForVisit { get; set; }
         public string ExaminationScope { get; set; }
         public ExamFindings ExamFindings { get; set; } = new ExamFindings();
-        public Diagnosis Diagnosis { get; set; } = new Diagnosis();
+        public string Diagnosis { get; set; }
         public Treatment Treatment { get; set; } = new Treatment();
         public Patient Patient { get; set; } = new Patient();
         [Column(TypeName = "datetime2")]
