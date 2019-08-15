@@ -6,6 +6,17 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
 {
     public static class ViewModelExtensions
     {
+        public static IList<MedicalRecordEntry> ToDomainModel(this IList<MedicalRecordEntryViewModel> medicalRecordEntryViewModels)
+        {
+            IList<MedicalRecordEntry> medicalRecordEntries = new List<MedicalRecordEntry>();
+
+            foreach (var e in medicalRecordEntryViewModels)
+            {
+                medicalRecordEntries.Add(e.ToDomainModel());
+            }
+            return medicalRecordEntries;
+        }
+
         public static Admin ToDomainModel(this AdminViewModel adminViewModel)
         {
             Admin admin = new Admin();
@@ -27,6 +38,7 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
         public static Doctor ToDomainModel(this DoctorViewModel doctorViewModel)
         {
             Doctor doctor = new Doctor();
+            doctor.Id = doctorViewModel.Id;
             doctor.IdentityId = doctorViewModel.IdentityId;
             doctor.UserName = doctorViewModel.UserName;
             doctor.FirstName = doctorViewModel.FirstName;
@@ -47,6 +59,7 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
         public static Patient ToDomainModel(this PatientViewModel patientViewModel)
         {
             Patient patient = new Patient();
+            patient.Id = patientViewModel.Id;
             patient.IdentityId = patientViewModel.IdentityId;
             patient.UserName = patientViewModel.UserName;
             patient.FirstName = patientViewModel.FirstName;
@@ -59,59 +72,23 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
             patient.Address2 = patientViewModel.Address2;
             patient.Email = patientViewModel.Email;
             patient.EmergencyContactNumber = patientViewModel.EmergencyContactNumber;
+            patient.MedicalRecord = patientViewModel.MedicalRecord.ToDomainModel();
             return patient;
-        }
-
-        public static IList<MedicalRecordEntry> ToDomainModel(this IList<MedicalRecordEntryViewModel> medicalRecordEntryViewModels)
-        {
-            IList<MedicalRecordEntry> medicalRecordEntries = new List<MedicalRecordEntry>();
-
-            foreach (var e in medicalRecordEntryViewModels)
-            {
-                medicalRecordEntries.Add(
-                    new MedicalRecordEntry
-                    {
-                        Diagnosis = new Diagnosis
-                        {
-                            Name = e.Diagnosis.Name,
-                            Type = e.Diagnosis.Type,
-                            Description = e.Diagnosis.Description,
-                            Inclusions = e.Diagnosis.Inclusions,
-                            ExcludesOne = e.Diagnosis.ExcludesOne,
-                            ExcludesTwo = e.Diagnosis.ExcludesTwo
-                        },
-
-                        ExamFindings = new ExamFindings
-                        {
-                            Abnormal = e.ExamFindings.Abnormal,
-                            Positive = e.ExamFindings.Positive,
-                            RelevantNegative = e.ExamFindings.RelevantNegative
-                        },
-
-                        Treatment = new Treatment
-                        {
-                            Details = e.Treatment.Details,
-                            Recommendations = e.Treatment.Recommendations
-                        },
-
-                        ExaminationScope = e.ExaminationScope,
-                        ReasonForVisit = e.ReasonForVisit,
-                        RecommendedVisitDate = e.RecommendedVisitDate,
-                        TimeEntry = e.TimeEntry,
-                    });
-            }
-
-            return medicalRecordEntries;
         }
 
         public static MedicalRecordEntry ToDomainModel(this MedicalRecordEntryViewModel medicalRecordEntryViewModel)
         {
             MedicalRecordEntry medicalRecordEntry = new MedicalRecordEntry();
-            medicalRecordEntry.Diagnosis = medicalRecordEntryViewModel.Diagnosis.ToDomainModel();
-            medicalRecordEntry.ExamFindings = medicalRecordEntryViewModel.ExamFindings.ToDomainModel();
+            medicalRecordEntry.Id = medicalRecordEntryViewModel.Id;
             medicalRecordEntry.ExaminationScope = medicalRecordEntryViewModel.ExaminationScope;
             medicalRecordEntry.ReasonForVisit = medicalRecordEntryViewModel.ReasonForVisit;
             medicalRecordEntry.RecommendedVisitDate = medicalRecordEntryViewModel.RecommendedVisitDate;
+            medicalRecordEntry.Diagnosis = medicalRecordEntryViewModel.Diagnosis.ToDomainModel();
+            medicalRecordEntry.ExamFindings = medicalRecordEntryViewModel.ExamFindings.ToDomainModel();
+            medicalRecordEntry.Patient = medicalRecordEntryViewModel.PatientViewModel.ToDomainModel();
+            medicalRecordEntry.TimeEntry = medicalRecordEntryViewModel.TimeEntry;
+            medicalRecordEntry.RecommendedVisitDate = medicalRecordEntryViewModel.RecommendedVisitDate;
+
             return medicalRecordEntry;
         }
 
@@ -125,24 +102,29 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
             diagnosis.ExcludesOne = diagnosisViewModel.ExcludesOne;
             diagnosis.ExcludesTwo = diagnosisViewModel.ExcludesTwo;
             diagnosis.Inclusions = diagnosisViewModel.Inclusions;
+
             return diagnosis;
-        }
-        
-        public static Treatment ToDomainModel(this TreatmentViewModel treatmentViewModel)
-        {
-            Treatment treatment = new Treatment();
-            treatment.Details = treatmentViewModel.Details;
-            treatment.Recommendations = treatmentViewModel.Recommendations;
-            return treatment;
         }
 
         public static ExamFindings ToDomainModel(this ExamFindingsViewModel examFindingsViewModel)
         {
             ExamFindings examFindings = new ExamFindings();
+            examFindings.Id = examFindingsViewModel.Id;
             examFindings.Abnormal = examFindingsViewModel.Abnormal;
             examFindings.Positive = examFindingsViewModel.Positive;
             examFindings.RelevantNegative = examFindingsViewModel.RelevantNegative;
             return examFindings;
         }
+        
+        public static Treatment ToDomainModel(this TreatmentViewModel treatmentViewModel)
+        {
+            Treatment treatment = new Treatment();
+            treatment.Id = treatmentViewModel.Id;
+            treatment.Details = treatmentViewModel.Details;
+            treatment.Recommendations = treatmentViewModel.Recommendations;
+
+            return treatment;
+        }
+
     }
 }

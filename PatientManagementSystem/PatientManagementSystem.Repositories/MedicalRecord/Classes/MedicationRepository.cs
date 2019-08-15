@@ -10,6 +10,7 @@ namespace PatientManagementSystem.Repositories
         public void Add(Medication medication)
         {
             context.Medications.Add(medication);
+            context.SaveChanges();
         }
 
         public IList<Medication> GetAll()
@@ -20,6 +21,19 @@ namespace PatientManagementSystem.Repositories
         public Medication GetById(int id)
         {
             return context.Medications.FirstOrDefault(m => m.Id == id);
+        }
+
+        public void Update(Medication medication)
+        {
+            Medication result = context.Medications.FirstOrDefault(m => m.Id == medication.Id);
+            if (result != null)
+            {
+                result.Administered = medication.Administered;
+                result.Allergies = medication.Allergies;
+                result.Prescribed = medication.Prescribed;
+                result.Renewed = medication.Renewed;
+                context.SaveChanges();
+            }
         }
     }
 }

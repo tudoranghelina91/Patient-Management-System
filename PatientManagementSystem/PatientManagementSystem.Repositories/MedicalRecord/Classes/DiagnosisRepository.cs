@@ -22,5 +22,20 @@ namespace PatientManagementSystem.Repositories
         {
             return context.Diagnoses.FirstOrDefault(d => d.Id == id);
         }
+
+        public void Update(Diagnosis diagnosis)
+        {
+            Diagnosis result = context.Diagnoses.FirstOrDefault(d => d.Id == diagnosis.Id);
+            if (result != null)
+            {
+                result.Name = diagnosis.Name;
+                result.Description = diagnosis.Description;
+                result.Type = diagnosis.Type;
+                result.Inclusions = diagnosis.Inclusions;
+                result.ExcludesOne = diagnosis.ExcludesOne;
+                result.ExcludesTwo = diagnosis.ExcludesTwo;
+                context.SaveChanges();
+            }
+        }
     }
 }

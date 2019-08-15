@@ -19,7 +19,6 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
         IAdminRepository adminRepository = new AdminRepository();
         IPatientRepository patientRepository = new PatientRepository();
         IDoctorRepository doctorRepository = new DoctorRepository();
-        IMedicalRecordEntryRepository medicalRecordEntryRepository = new MedicalRecordEntryRepository();
 
         // GET: AdminArea/UserDetails
         [Authorize(Roles = "Admin")]

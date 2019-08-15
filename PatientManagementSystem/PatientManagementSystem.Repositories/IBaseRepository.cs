@@ -12,5 +12,6 @@ namespace PatientManagementSystem.Repositories
         T GetById(int id);
         IList<T> GetAll();
         void Add(T entity);
+        void Update(T entity);
     }
 }

@@ -22,5 +22,17 @@ namespace PatientManagementSystem.Repositories
         {
             return context.ExamFindings.FirstOrDefault(e => e.Id == id);
         }
+
+        public void Update(ExamFindings examFindings)
+        {
+            ExamFindings result = context.ExamFindings.FirstOrDefault(e => e.Id == examFindings.Id);
+            if (result != null)
+            {
+                result.Positive = examFindings.Positive;
+                result.RelevantNegative = examFindings.RelevantNegative;
+                result.Abnormal = examFindings.Abnormal;
+                context.SaveChanges();
+            }
+        }
     }
 }

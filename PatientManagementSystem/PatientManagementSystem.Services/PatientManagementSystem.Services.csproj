@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="ICDCode.cs" />
     <Compile Include="ICDCodeService.cs" />
     <Compile Include="IICDCodeService.cs" />

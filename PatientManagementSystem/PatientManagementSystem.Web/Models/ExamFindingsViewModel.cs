@@ -5,7 +5,7 @@ using System.Web;
 
 namespace PatientManagementSystem.Web.Models
 {
-    public class ExamFindingsViewModel
+    public class ExamFindingsViewModel : BaseViewModel
     {
         public string Positive { get; set; }
         public string RelevantNegative { get; set; }

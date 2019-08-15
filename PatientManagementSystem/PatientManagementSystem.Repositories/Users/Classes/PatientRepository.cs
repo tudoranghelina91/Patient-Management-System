@@ -21,5 +21,10 @@ namespace PatientManagementSystem.Repositories
         {
             return context.Patients.FirstOrDefault(p => p.Id == id);
         }
+
+        public void Update(Patient entity)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

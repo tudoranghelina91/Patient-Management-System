@@ -60,10 +60,10 @@
     <Compile Include="MedicalRecord\Classes\MedicationRepository.cs" />
     <Compile Include="MedicalRecord\Classes\TreatmentRepository.cs" />
     <Compile Include="Users\Classes\AdminRepository.cs" />
-    <Compile Include="Users\Classes\BaseRepository.cs" />
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="Users\Classes\DoctorRepository.cs" />
     <Compile Include="Users\Interfaces\IAdminRepository.cs" />
-    <Compile Include="Users\Interfaces\IBaseRepository.cs" />
+    <Compile Include="IBaseRepository.cs" />
     <Compile Include="Users\Interfaces\IDoctorRepository.cs" />
     <Compile Include="Users\Interfaces\IPatientRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

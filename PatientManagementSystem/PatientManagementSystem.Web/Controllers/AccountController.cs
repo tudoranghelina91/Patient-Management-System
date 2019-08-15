@@ -67,8 +67,6 @@ namespace PatientManagementSystem.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                if (User.IsInRole("Admin"))
-                    return RedirectToAction("Index", "AdminDashboard", null);
                 return View(model);
             }
 

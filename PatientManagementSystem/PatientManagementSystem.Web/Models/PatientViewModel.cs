@@ -9,7 +9,6 @@ namespace PatientManagementSystem.Web.Models
 {
     public class PatientViewModel : UserViewModel
     {
-        [Required]
         public IList<MedicalRecordEntryViewModel> MedicalRecord { get; set; } = new List<MedicalRecordEntryViewModel>();
         [Required]
         public string EmergencyContactNumber { get; set; }
