@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-
-namespace PatientManagementSystem.Domain
+﻿namespace PatientManagementSystem.Domain
 {
     public class Medication : BaseEntity
     {
-        public IList<string> Administered { get; set; } = new List<string>();
-        public IList<string> Prescribed { get; set; } = new List<string>();
-        public IList<string> Renewed { get; set; } = new List<string>();
-        public IList<string> Allergies { get; set; } = new List<string>();
+        public MedicalRecordEntry MedicalRecordEntry { get; set; } = new MedicalRecordEntry();
+        public string Administered { get; set; }
+        public string Prescribed { get; set; }
+        public string Renewed { get; set; }
+        public string Allergies { get; set; }
     }
 }

@@ -13,9 +13,7 @@ namespace PatientManagementSystem.Web.Models
         [Required]
         public string ExaminationScope { get; set; }
         [Required]
-        public ExamFindingsViewModel ExamFindings { get; set; } = new ExamFindingsViewModel();
         public string Diagnosis { get; set; }
-        public TreatmentViewModel Treatment { get; set; } = new TreatmentViewModel();
         [DataType(DataType.DateTime)]
         public DateTime RecommendedVisitDate { get; set; }
         [Required]

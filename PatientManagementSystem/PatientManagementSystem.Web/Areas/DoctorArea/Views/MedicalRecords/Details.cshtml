@@ -1,0 +1,59 @@
+﻿@model PatientManagementSystem.Web.Models.MedicalRecordEntryViewModel
+
+@{
+    ViewBag.Title = "Medical Record Entry #" + Model.Id;
+}
+
+    <h2>Medical Record Entry #@Model.Id for @Model.PatientViewModel.FirstName @Model.PatientViewModel.LastName</h2>
+
+<div>
+    <h4>Medical Record Entry #@Model.Id for @Model.PatientViewModel.FirstName @Model.PatientViewModel.LastName</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeEntry)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeEntry)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReasonForVisit)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReasonForVisit)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExaminationScope)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExaminationScope)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Diagnosis)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Diagnosis)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RecommendedVisitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RecommendedVisitDate)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, patientId = Model.PatientViewModel.Id }) |
+    @Html.ActionLink("Back to List", "Index", new { patientId = Model.PatientViewModel.Id }) |
+    @Html.ActionLink("Exam Findings", "Index", "ExamFindings", new { medicalRecordId = Model.Id }, null);
+</p>

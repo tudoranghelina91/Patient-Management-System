@@ -47,7 +47,7 @@ namespace PatientManagementSystem.Web
                 {
                     userManager.AddToRole(user.Id, "Admin");
                     // Seed admin data
-                    RunSetup(user, patientManagementDbContext);
+                    SeedAdmin(user, patientManagementDbContext);
                 }
 
             }
@@ -58,6 +58,21 @@ namespace PatientManagementSystem.Web
                 var role = new IdentityRole();
                 role.Name = "Doctor";
                 roleManager.Create(role);
+
+                // Create doctor
+                var user = new ApplicationUser();
+                user.UserName = "doctor";
+                user.Email = "doctor@doctor.com";
+
+                string password = "Doctor@69!";
+
+                var chkUser = userManager.Create(user, password);
+                if (chkUser.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, "Doctor");
+                    // seed doctor data
+                    SeedDoctor(user, patientManagementDbContext);
+                }
             }
 
             // Create patient role
@@ -66,10 +81,25 @@ namespace PatientManagementSystem.Web
                 var role = new IdentityRole();
                 role.Name = "Patient";
                 roleManager.Create(role);
+
+                // Create patient
+                var user = new ApplicationUser();
+                user.UserName = "patient";
+                user.Email = "patient@patient.com";
+
+                string password = "Patient@69!";
+
+                var chkUser = userManager.Create(user, password);
+                if (chkUser.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, "Patient");
+                    // seed doctor data
+                    SeedPatient(user, patientManagementDbContext);
+                }
             }
         }
 
-        private void RunSetup(ApplicationUser user, PatientManagementSystemDBContext patientManagementDbContext)
+        private void SeedAdmin(ApplicationUser user, PatientManagementSystemDBContext patientManagementDbContext)
         {
             Admin admin = new Admin();
             admin.IdentityId = user.Id;
@@ -84,6 +114,47 @@ namespace PatientManagementSystem.Web
             admin.City = "None";
             admin.Country = "None";
             patientManagementDbContext.Admins.Add(admin);
+            patientManagementDbContext.SaveChanges();
+        }
+
+        private void SeedDoctor(ApplicationUser user, PatientManagementSystemDBContext patientManagementDbContext)
+        {
+            Doctor doctor = new Doctor();
+            doctor.IdentityId = user.Id;
+            doctor.UserName = user.UserName;
+            doctor.Email = user.Email;
+            doctor.FirstName = user.UserName;
+            doctor.LastName = user.UserName;
+            doctor.Address1 = "none";
+            doctor.Address2 = "none";
+            doctor.SSN = "123456";
+            doctor.State = "none";
+            doctor.City = "None";
+            doctor.Country = "None";
+            doctor.University = "None";
+            doctor.Specialization = Doctor.Specialty.Allergology;
+            doctor.LicenseNo = "213412";
+
+            patientManagementDbContext.Doctors.Add(doctor);
+            patientManagementDbContext.SaveChanges();
+        }
+
+        private void SeedPatient(ApplicationUser user, PatientManagementSystemDBContext patientManagementDbContext)
+        {
+            Patient patient = new Patient();
+            patient.IdentityId = user.Id;
+            patient.UserName = user.UserName;
+            patient.Email = user.Email;
+            patient.FirstName = user.UserName;
+            patient.LastName = user.UserName;
+            patient.Address1 = "none";
+            patient.Address2 = "none";
+            patient.SSN = "123456";
+            patient.State = "none";
+            patient.City = "None";
+            patient.Country = "None";
+            patient.EmergencyContactNumber = "21312451";
+            patientManagementDbContext.Patients.Add(patient);
             patientManagementDbContext.SaveChanges();
         }
     }

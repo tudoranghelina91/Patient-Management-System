@@ -1,0 +1,42 @@
+﻿@model PatientManagementSystem.Web.Models.ExamFindingsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ExamFindingsViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Positive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Positive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RelevantNegative)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RelevantNegative)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Abnormal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abnormal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, medicalRecordEntryId = Model.MedicalRecordEntryViewModel.Id }) |
+    @Html.ActionLink("Back to List", "Index", new { medicalRecordEntryId = Model.MedicalRecordEntryViewModel.Id })
+</p>

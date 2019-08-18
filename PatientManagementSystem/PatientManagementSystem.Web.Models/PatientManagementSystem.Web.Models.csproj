@@ -81,20 +81,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountViewModels.cs" />
-    <Compile Include="AddUserViewModel.cs" />
-    <Compile Include="AdminViewModel.cs" />
+    <Compile Include="Account\AccountViewModels.cs" />
+    <Compile Include="Account\AddUserViewModel.cs" />
+    <Compile Include="Users\AdminViewModel.cs" />
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="DiagnosisViewModel.cs" />
-    <Compile Include="DoctorViewModel.cs" />
-    <Compile Include="ExamFindingsViewModel.cs" />
-    <Compile Include="IdentityModels.cs" />
-    <Compile Include="ManageViewModels.cs" />
-    <Compile Include="MedicalRecordEntryViewModel.cs" />
-    <Compile Include="PatientViewModel.cs" />
+    <Compile Include="Users\DoctorViewModel.cs" />
+    <Compile Include="MedicalRecord\ExamFindingsViewModel.cs" />
+    <Compile Include="Account\IdentityModels.cs" />
+    <Compile Include="Account\ManageViewModels.cs" />
+    <Compile Include="MedicalRecord\MedicalRecordEntryViewModel.cs" />
+    <Compile Include="MedicalRecord\MedicationViewModel.cs" />
+    <Compile Include="Users\PatientViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TreatmentViewModel.cs" />
-    <Compile Include="UserViewModel.cs" />
+    <Compile Include="MedicalRecord\TreatmentViewModel.cs" />
+    <Compile Include="Users\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

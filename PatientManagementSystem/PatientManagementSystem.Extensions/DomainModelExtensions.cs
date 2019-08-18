@@ -27,6 +27,28 @@ namespace PatientManagementSystem.Extensions
 
             return medicalRecordEntryViewModels;
         }
+        public static IList<ExamFindingsViewModel> ToViewModel(this IList<ExamFindings> examFindings)
+        {
+            IList<ExamFindingsViewModel> examFindingsViewModel = new List<ExamFindingsViewModel>();
+            foreach (var e in examFindings)
+            {
+                examFindingsViewModel.Add(e.ToViewModel());
+            }
+
+            return examFindingsViewModel;
+        }
+
+        public static IList<MedicationViewModel> ToViewModel(this IList<Medication> medications)
+        {
+            IList<MedicationViewModel> medicationViewModels = new List<MedicationViewModel>();
+            foreach (var m in medications)
+            {
+                medicationViewModels.Add(m.ToViewModel());
+            }
+
+            return medicationViewModels;
+        }
+
 
         public static AdminViewModel ToViewModel(this Admin admin)
         {
@@ -95,9 +117,8 @@ namespace PatientManagementSystem.Extensions
             medicalRecordEntryViewModel.ReasonForVisit = medicalRecordEntry.ReasonForVisit;
             medicalRecordEntryViewModel.RecommendedVisitDate = medicalRecordEntry.RecommendedVisitDate;
             medicalRecordEntryViewModel.TimeEntry = medicalRecordEntry.TimeEntry;
-            medicalRecordEntryViewModel.ExamFindings = medicalRecordEntry.ExamFindings.ToViewModel();
             medicalRecordEntryViewModel.Diagnosis = medicalRecordEntry.Diagnosis;
-            medicalRecordEntryViewModel.Treatment = medicalRecordEntry.Treatment.ToViewModel();
+            medicalRecordEntryViewModel.PatientViewModel = medicalRecordEntry.Patient.ToViewModel();
 
             return medicalRecordEntryViewModel;
         }
@@ -123,6 +144,7 @@ namespace PatientManagementSystem.Extensions
             examFindingsViewModel.Positive = examFindings.Positive;
             examFindingsViewModel.RelevantNegative = examFindings.RelevantNegative;
             examFindingsViewModel.Abnormal = examFindings.Abnormal;
+            examFindingsViewModel.MedicalRecordEntryViewModel = examFindings.MedicalRecordEntry.ToViewModel();
 
             return examFindingsViewModel;
         }
@@ -133,8 +155,22 @@ namespace PatientManagementSystem.Extensions
             treatmentViewModel.Id = treatment.Id;
             treatmentViewModel.Details = treatment.Details;
             treatmentViewModel.Recommendations = treatment.Recommendations;
+            treatmentViewModel.MedicalRecordEntryViewModel = treatment.MedicalRecordEntry.ToViewModel();
 
             return treatmentViewModel;
+        }
+
+        public static MedicationViewModel ToViewModel(this Medication medication)
+        {
+            MedicationViewModel medicationViewModel = new MedicationViewModel();
+            medicationViewModel.Id = medication.Id;
+            medicationViewModel.Prescribed = medication.Prescribed;
+            medicationViewModel.Administered = medication.Administered;
+            medicationViewModel.Renewed = medication.Renewed;
+            medicationViewModel.Allergies = medication.Allergies;
+            medicationViewModel.MedicalRecordEntryViewModel = medication.MedicalRecordEntry.ToViewModel();
+
+            return medicationViewModel;
         }
     }
 }

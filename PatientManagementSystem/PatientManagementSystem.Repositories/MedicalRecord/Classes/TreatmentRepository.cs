@@ -8,6 +8,7 @@ namespace PatientManagementSystem.Repositories
     {
         public void Add(Treatment treatment)
         {
+            context.MedicalRecordEntries.Attach(treatment.MedicalRecordEntry);
             context.Treatments.Add(treatment);
             context.SaveChanges();
         }
@@ -20,6 +21,11 @@ namespace PatientManagementSystem.Repositories
         public Treatment GetById(int id)
         {
             return context.Treatments.FirstOrDefault(t => t.Id == id);
+        }
+
+        public IList<Treatment> GetByMedicalRecordEntryId(int medicalRecordEntryId)
+        {
+            return context.Treatments.Where(t => t.MedicalRecordEntry.Id == medicalRecordEntryId).ToList();
         }
 
         public void Update(Treatment treatment)

@@ -33,14 +33,15 @@ namespace PatientManagementSystem.Repositories
             MedicalRecordEntry result = context.MedicalRecordEntries.FirstOrDefault(e => e.Id == medicalRecordEntry.Id);
             if (result != null)
             {
+                context.Patients.Attach(medicalRecordEntry.Patient);
+                context.Patients.Attach(result.Patient);
                 result.TimeEntry = medicalRecordEntry.TimeEntry;
-                result.ExamFindings = medicalRecordEntry.ExamFindings;
                 result.Diagnosis = medicalRecordEntry.Diagnosis;
                 result.ExaminationScope = medicalRecordEntry.ExaminationScope;
                 result.Patient = medicalRecordEntry.Patient;
                 result.ReasonForVisit = medicalRecordEntry.ReasonForVisit;
                 result.RecommendedVisitDate = medicalRecordEntry.RecommendedVisitDate;
-                result.Treatment = medicalRecordEntry.Treatment;
+                result.Patient = medicalRecordEntry.Patient;
                 context.SaveChanges();
             }
         }

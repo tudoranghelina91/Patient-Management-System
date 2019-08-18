@@ -1,5 +1,11 @@
 ﻿@model IEnumerable<PatientManagementSystem.Web.Models.MedicalRecordEntryViewModel>
-<h4>@TempData["patientFirstName"] @TempData["patientLastName"] Medical Record</h4>
+
+@{
+    ViewBag.Title = "Medical record for " + TempData["patientFirstName"] + " " + TempData["patientFirstName"];
+}
+
+    <h2>Medical record for @TempData["patientFirstName"]  @TempData["patientLastName"];</h2>
+
 <p>
     @Html.ActionLink("Create New", "Create", new { patientId = TempData["patientId"] })
 </p>
@@ -13,6 +19,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ExaminationScope)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Diagnosis)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.RecommendedVisitDate)
@@ -32,16 +41,17 @@
             @Html.DisplayFor(modelItem => item.ExaminationScope)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.Diagnosis)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.RecommendedVisitDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id, patientId = TempData["patientId"] }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id, patientId = TempData["patientId"] }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id, patientId = TempData["patientId"] })
         </td>
     </tr>
 }
 
 </table>
-
-@Html.ActionLink("Back to patient", "Details", "Patients", new { id = TempData["patientId"] }, null)

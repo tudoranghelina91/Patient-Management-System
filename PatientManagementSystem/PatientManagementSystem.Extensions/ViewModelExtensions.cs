@@ -16,6 +16,28 @@ namespace PatientManagementSystem.Extensions
             }
             return medicalRecordEntries;
         }
+        public static IList<ExamFindings> ToDomainModel(this IList<ExamFindingsViewModel> examFindingsViewModels)
+        {
+            IList<ExamFindings> examFindings = new List<ExamFindings>();
+            foreach (var e in examFindingsViewModels)
+            {
+                examFindings.Add(e.ToDomainModel());
+            }
+
+            return examFindings;
+        }
+
+        public static IList<Medication> ToDomainModel(this IList<MedicationViewModel> medicationViewModels)
+        {
+            IList<Medication> medications = new List<Medication>();
+            foreach (var m in medicationViewModels)
+            {
+                medications.Add(m.ToDomainModel());
+            }
+
+            return medications;
+        }
+
 
         public static Admin ToDomainModel(this AdminViewModel adminViewModel)
         {
@@ -84,7 +106,6 @@ namespace PatientManagementSystem.Extensions
             medicalRecordEntry.ReasonForVisit = medicalRecordEntryViewModel.ReasonForVisit;
             medicalRecordEntry.RecommendedVisitDate = medicalRecordEntryViewModel.RecommendedVisitDate;
             medicalRecordEntry.Diagnosis = medicalRecordEntryViewModel.Diagnosis;
-            medicalRecordEntry.ExamFindings = medicalRecordEntryViewModel.ExamFindings.ToDomainModel();
             medicalRecordEntry.Patient = medicalRecordEntryViewModel.PatientViewModel.ToDomainModel();
             medicalRecordEntry.TimeEntry = medicalRecordEntryViewModel.TimeEntry;
             medicalRecordEntry.RecommendedVisitDate = medicalRecordEntryViewModel.RecommendedVisitDate;
@@ -113,6 +134,7 @@ namespace PatientManagementSystem.Extensions
             examFindings.Abnormal = examFindingsViewModel.Abnormal;
             examFindings.Positive = examFindingsViewModel.Positive;
             examFindings.RelevantNegative = examFindingsViewModel.RelevantNegative;
+            examFindings.MedicalRecordEntry = examFindingsViewModel.MedicalRecordEntryViewModel.ToDomainModel();
             return examFindings;
         }
         
@@ -122,8 +144,22 @@ namespace PatientManagementSystem.Extensions
             treatment.Id = treatmentViewModel.Id;
             treatment.Details = treatmentViewModel.Details;
             treatment.Recommendations = treatmentViewModel.Recommendations;
+            treatment.MedicalRecordEntry = treatmentViewModel.MedicalRecordEntryViewModel.ToDomainModel();
 
             return treatment;
+        }
+
+        public static Medication ToDomainModel(this MedicationViewModel medicationViewModel)
+        {
+            Medication medication = new Medication();
+            medication.Id = medicationViewModel.Id;
+            medication.Prescribed = medicationViewModel.Prescribed;
+            medication.Administered = medicationViewModel.Administered;
+            medication.Renewed = medicationViewModel.Renewed;
+            medication.Allergies = medicationViewModel.Allergies;
+            medication.MedicalRecordEntry = medicationViewModel.MedicalRecordEntryViewModel.ToDomainModel();
+
+            return medication;
         }
 
     }

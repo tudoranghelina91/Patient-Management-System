@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Compile Include="IBaseRepository.cs" />
     <Compile Include="MedicalRecord\Classes\ExamFindingsRepository.cs" />
     <Compile Include="MedicalRecord\Classes\DiagnosisRepository.cs" />
     <Compile Include="MedicalRecord\Interfaces\IDiagnosisRepository.cs" />
@@ -63,7 +64,6 @@
     <Compile Include="BaseRepository.cs" />
     <Compile Include="Users\Classes\DoctorRepository.cs" />
     <Compile Include="Users\Interfaces\IAdminRepository.cs" />
-    <Compile Include="IBaseRepository.cs" />
     <Compile Include="Users\Interfaces\IDoctorRepository.cs" />
     <Compile Include="Users\Interfaces\IPatientRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

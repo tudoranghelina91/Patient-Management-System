@@ -8,6 +8,7 @@ namespace PatientManagementSystem.Repositories
     {
         public void Add(ExamFindings examFindings)
         {
+            context.MedicalRecordEntries.Attach(examFindings.MedicalRecordEntry);
             context.ExamFindings.Add(examFindings);
             context.SaveChanges();
         }
@@ -20,6 +21,11 @@ namespace PatientManagementSystem.Repositories
         public ExamFindings GetById(int id)
         {
             return context.ExamFindings.FirstOrDefault(e => e.Id == id);
+        }
+
+        public IList<ExamFindings> GetByMedicalRecordEntryId(int medicalRecordEntryId)
+        {
+            return context.ExamFindings.Where(e => e.MedicalRecordEntry.Id == medicalRecordEntryId).ToList();
         }
 
         public void Update(ExamFindings examFindings)
