@@ -33,10 +33,15 @@ namespace PatientManagementSystem.Repositories
             Medication result = context.Medications.FirstOrDefault(m => m.Id == medication.Id);
             if (result != null)
             {
+                context.MedicalRecordEntries.Attach(medication.MedicalRecordEntry);
+                context.MedicalRecordEntries.Attach(result.MedicalRecordEntry);
+                context.Entry(result.MedicalRecordEntry.Patient).State = System.Data.Entity.EntityState.Detached;
                 result.Administered = medication.Administered;
                 result.Allergies = medication.Allergies;
                 result.Prescribed = medication.Prescribed;
                 result.Renewed = medication.Renewed;
+                result.MedicalRecordEntry = medication.MedicalRecordEntry;
+                result.MedicalRecordEntry.Patient = medication.MedicalRecordEntry.Patient;
                 context.SaveChanges();
             }
         }

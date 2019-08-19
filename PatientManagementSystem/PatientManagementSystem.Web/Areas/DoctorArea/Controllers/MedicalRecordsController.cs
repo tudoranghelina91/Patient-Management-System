@@ -64,9 +64,9 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         [Authorize(Roles = "Doctor")]
         public ActionResult Details(int id, int patientId)
         {
+            AddPatientToTempData(patientId);
             MedicalRecordEntryViewModel medicalRecordEntryViewModel = medicalRecordEntryRepository.GetById(id).ToViewModel();
             medicalRecordEntryViewModel.PatientViewModel = patientRepository.GetById(patientId).ToViewModel();
-            AddPatientToTempData(patientId);
             return View(medicalRecordEntryViewModel);
         }
         [Authorize(Roles = "Doctor")]

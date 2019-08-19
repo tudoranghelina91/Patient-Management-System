@@ -33,9 +33,14 @@ namespace PatientManagementSystem.Repositories
             ExamFindings result = context.ExamFindings.FirstOrDefault(e => e.Id == examFindings.Id);
             if (result != null)
             {
+                context.MedicalRecordEntries.Attach(examFindings.MedicalRecordEntry);
+                context.MedicalRecordEntries.Attach(result.MedicalRecordEntry);
+                context.Entry(result.MedicalRecordEntry.Patient).State = System.Data.Entity.EntityState.Detached;
                 result.Positive = examFindings.Positive;
                 result.RelevantNegative = examFindings.RelevantNegative;
                 result.Abnormal = examFindings.Abnormal;
+                result.MedicalRecordEntry = examFindings.MedicalRecordEntry;
+                result.MedicalRecordEntry.Patient = examFindings.MedicalRecordEntry.Patient;
                 context.SaveChanges();
             }
         }

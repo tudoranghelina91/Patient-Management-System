@@ -231,6 +231,14 @@
     <Content Include="Areas\DoctorArea\Views\Patients\Edit.cshtml" />
     <Content Include="Areas\DoctorArea\Views\Patients\Details.cshtml" />
     <Content Include="Areas\DoctorArea\Views\MedicalRecords\Edit.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\Medication\Index.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\Medication\Create.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\Medication\Details.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\Medication\Edit.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\Treatments\Create.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\Treatments\Details.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\Treatments\Edit.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\Treatments\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -285,8 +293,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\AdminArea\Models\" />
     <Folder Include="Areas\DoctorArea\Models\" />
-    <Folder Include="Areas\DoctorArea\Views\Medication\" />
-    <Folder Include="Areas\DoctorArea\Views\Treatments\" />
     <Folder Include="Areas\PatientArea\Models\" />
     <Folder Include="Areas\PatientArea\Views\Home\" />
     <Folder Include="Areas\PatientArea\Views\Shared\" />

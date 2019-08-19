@@ -11,6 +11,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         IExamFindingsRepository examFindingsRepository = new ExamFindingsRepository();
         IMedicalRecordEntryRepository medicalRecordEntryRepository = new MedicalRecordEntryRepository();
 
+        [Authorize(Roles = "Doctor")]
         private void AddMedicalRecordToTempData(int medicalRecordId)
         {
             if (!TempData.Keys.Contains("medicalRecordId"))
@@ -22,15 +23,17 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         [Authorize(Roles = "Doctor")]
         public ActionResult Index(int medicalRecordId)
         {
+            AddMedicalRecordToTempData(medicalRecordId);
             IList<ExamFindingsViewModel> examFindingsViewModels = new List<ExamFindingsViewModel>();
             examFindingsViewModels = examFindingsRepository.GetByMedicalRecordEntryId(medicalRecordId).ToViewModel();
-            AddMedicalRecordToTempData(medicalRecordId);
             return View(examFindingsViewModels);
         }
+
         [Authorize(Roles = "Doctor")]
         public ActionResult Create(int medicalRecordId)
         {
             AddMedicalRecordToTempData(medicalRecordId);
+            TempData.Keep();
             ExamFindingsViewModel examFindingsViewModel = new ExamFindingsViewModel { MedicalRecordEntryViewModel = medicalRecordEntryRepository.GetById(medicalRecordId).ToViewModel() };
             return View(examFindingsViewModel);
         }
@@ -60,6 +63,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
             AddMedicalRecordToTempData(medicalRecordId);
             return View(examFindingsViewModel);
         }
+
         [Authorize(Roles = "Doctor")]
         public ActionResult Edit(int id, int medicalRecordId)
         {
@@ -68,6 +72,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
             AddMedicalRecordToTempData(medicalRecordId);
             return View(examFindingsViewModel);
         }
+
         [Authorize(Roles = "Doctor")]
         [HttpPost]
         public ActionResult Edit(ExamFindingsViewModel examFindingsViewModel, int medicalRecordId)

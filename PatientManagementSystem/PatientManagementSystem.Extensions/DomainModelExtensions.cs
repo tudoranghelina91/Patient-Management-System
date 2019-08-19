@@ -49,6 +49,17 @@ namespace PatientManagementSystem.Extensions
             return medicationViewModels;
         }
 
+        public static IList<TreatmentViewModel> ToViewModel(this IList<Treatment> treatments)
+        {
+            IList<TreatmentViewModel> treatmentViewModels = new List<TreatmentViewModel>();
+            foreach (var t in treatments)
+            {
+                treatmentViewModels.Add(t.ToViewModel());
+            }
+
+            return treatmentViewModels;
+        }
+
 
         public static AdminViewModel ToViewModel(this Admin admin)
         {

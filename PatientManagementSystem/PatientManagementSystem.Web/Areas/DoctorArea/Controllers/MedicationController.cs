@@ -1,6 +1,7 @@
 ﻿using PatientManagementSystem.Extensions;
 using PatientManagementSystem.Repositories;
 using PatientManagementSystem.Web.Models;
+using System.Collections.Generic;
 using System.Web.Mvc;
 
 namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
@@ -9,6 +10,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
     {
         IMedicationRepository medicationRepository = new MedicationRepository();
         IMedicalRecordEntryRepository medicalRecordEntryRepository = new MedicalRecordEntryRepository();
+
         [Authorize(Roles = "Doctor")]
         private void AddMedicalRecordToTempData(int medicalRecordId)
         {
@@ -17,10 +19,21 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
                 TempData.Add("medicalRecordId", medicalRecordEntryRepository.GetById(medicalRecordId).Id);
             }
         }
+
+        [Authorize(Roles = "Doctor")]
+        public ActionResult Index(int medicalRecordId)
+        {
+            AddMedicalRecordToTempData(medicalRecordId);
+            IList<MedicationViewModel> medicationViewModels = new List<MedicationViewModel>();
+            medicationViewModels = medicationRepository.GetByMedicalRecordEntryId(medicalRecordId).ToViewModel();
+            return View(medicationViewModels);
+        }
+
         [Authorize(Roles = "Doctor")]
         public ActionResult Create(int medicalRecordId)
         {
             AddMedicalRecordToTempData(medicalRecordId);
+            TempData.Keep();
             MedicationViewModel medicationViewModel = new MedicationViewModel { MedicalRecordEntryViewModel = medicalRecordEntryRepository.GetById(medicalRecordId).ToViewModel() };
             return View(medicationViewModel);
         }

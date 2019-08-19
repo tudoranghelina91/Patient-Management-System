@@ -33,8 +33,12 @@ namespace PatientManagementSystem.Repositories
             Treatment result = context.Treatments.FirstOrDefault(t => t.Id == treatment.Id);
             if (result != null)
             {
+                context.MedicalRecordEntries.Attach(treatment.MedicalRecordEntry);
+                context.MedicalRecordEntries.Attach(result.MedicalRecordEntry);
+                context.Entry(result.MedicalRecordEntry.Patient).State = System.Data.Entity.EntityState.Detached;
                 result.Details = treatment.Details;
                 result.Recommendations = treatment.Recommendations;
+                result.MedicalRecordEntry = treatment.MedicalRecordEntry;
                 context.SaveChanges();
             }
         }

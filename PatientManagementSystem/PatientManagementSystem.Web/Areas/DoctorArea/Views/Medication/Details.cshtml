@@ -1,0 +1,50 @@
+﻿@model PatientManagementSystem.Web.Models.MedicationViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Medication for Medical Record Entry @TempData["medicalRecordId"]</h2>
+
+<div>
+    <h4>Medication for Medical Record Entry @TempData["medicalRecordId"]</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Administered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Administered)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prescribed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prescribed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Renewed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Renewed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allergies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allergies)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id, medicalRecordId = TempData["medicalRecordId"] }) |
+    @Html.ActionLink("Back to List", "Index", new { medicalRecordId = TempData["medicalRecordId"] })
+</p>

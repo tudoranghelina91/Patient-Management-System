@@ -38,6 +38,17 @@ namespace PatientManagementSystem.Extensions
             return medications;
         }
 
+        public static IList<Treatment> ToDomainModel(this IList<TreatmentViewModel> treatmentViewModels)
+        {
+            IList<Treatment> treatments = new List<Treatment>();
+            foreach (var t in treatmentViewModels)
+            {
+                treatments.Add(t.ToDomainModel());
+            }
+
+            return treatments;
+        }
+
 
         public static Admin ToDomainModel(this AdminViewModel adminViewModel)
         {

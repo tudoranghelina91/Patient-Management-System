@@ -55,5 +55,7 @@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id, patientId = Model.PatientViewModel.Id }) |
     @Html.ActionLink("Back to List", "Index", new { patientId = Model.PatientViewModel.Id }) |
-    @Html.ActionLink("Exam Findings", "Index", "ExamFindings", new { medicalRecordId = Model.Id }, null);
+    @Html.ActionLink("Exam Findings", "Index", "ExamFindings", new { medicalRecordId = Model.Id }, null) |
+    @Html.ActionLink("Medication", "Index", "Medication", new { medicalRecordId = Model.Id }, null) |
+    @Html.ActionLink("Treatment", "Index", "Treatments", new { medicalRecordId = Model.Id }, null) |
 </p>

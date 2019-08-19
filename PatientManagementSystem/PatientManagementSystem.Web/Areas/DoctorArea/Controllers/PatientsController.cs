@@ -27,7 +27,6 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
 
         // GET: DoctorArea/Patients
         IPatientRepository patientRepository = new PatientRepository();
-        IMedicalRecordEntryRepository medicalRecordEntryRepository = new MedicalRecordEntryRepository();
         [Authorize(Roles = "Doctor")]
         public ActionResult Index()
         {

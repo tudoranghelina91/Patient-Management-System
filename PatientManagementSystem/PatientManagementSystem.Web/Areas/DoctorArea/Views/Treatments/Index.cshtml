@@ -1,10 +1,10 @@
-﻿@model IEnumerable<PatientManagementSystem.Web.Models.ExamFindingsViewModel>
+﻿@model IEnumerable<PatientManagementSystem.Web.Models.TreatmentViewModel>
 
 @{
-    ViewBag.Title = $"Exam Findings for # {TempData["medicalRecordId"]}";
+    ViewBag.Title = "Index";
 }
 
-<h2>Exam Findings for Medical Record entry #@TempData["medicalRecordId"]</h2>
+<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create", new { medicalRecordId = TempData["medicalRecordId"] })
@@ -12,13 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Positive)
+            @Html.DisplayNameFor(model => model.Details)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.RelevantNegative)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Abnormal)
+            @Html.DisplayNameFor(model => model.Recommendations)
         </th>
         <th></th>
     </tr>
@@ -26,13 +23,10 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Positive)
+            @Html.DisplayFor(modelItem => item.Details)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.RelevantNegative)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Abnormal)
+            @Html.DisplayFor(modelItem => item.Recommendations)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id, medicalRecordId = TempData["medicalRecordId"] }) |
