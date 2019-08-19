@@ -9,5 +9,6 @@ namespace PatientManagementSystem.Repositories
         public abstract IList<BaseEntity> GetAll();
         public abstract BaseEntity GetById(int id);
         public abstract void Update(BaseEntity entity);
+        public abstract void Delete(BaseEntity entity);
     }
 }

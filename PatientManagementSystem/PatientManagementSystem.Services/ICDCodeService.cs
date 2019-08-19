@@ -2,55 +2,37 @@
 using System.Net;
 using Newtonsoft.Json;
 using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Net.Http.Headers;
+using Microsoft.IdentityModel.Claims;
 
 namespace PatientManagementSystem.Services
 {
     class ICDCodeService : IICDCodeService
     {
-        public string GetByICDCode(string icdCode)
-        {
-            string postURL = string.Format("http://icd10api.com/?code={0}&desc=short&r=json", icdCode);
-            WebRequest request = WebRequest.Create(postURL);
-            request.Method = "GET";
-            request.ContentType = "application/json; charset=utf-8";
+        const string clientId = "3ac58862-d3ec-48b8-b12f-1ca2aa85b7df_3694a49d-7621-4c6c-99c8-4a0077b6f5d1";
+        const string clientSecret = " b9DejBuEXYoUeLa0zqz4Pjhzd2GJxrdaKRXStDNOUQ0=";
 
-            var response = (HttpWebResponse)request.GetResponse();
-            string jsonText;
-            using (var sr = new StreamReader(response.GetResponseStream()))
-            {
-                jsonText = sr.ReadToEnd();
-            }
-            return jsonText;
+        public Diagnosis Deserialize(string ICDCode)
+        {
+            throw new System.NotImplementedException();
         }
 
-        public Diagnosis Deserialize(string diagnosis)
+        public string GetByICDCode(string ICDCode)
         {
-            ICDCode icdCode = JsonConvert.DeserializeObject<ICDCode>(diagnosis);
-            return new Diagnosis
-            {
-                Name = icdCode.Name,
-                Inclusions = icdCode.Inclusions,
-                ExcludesOne = icdCode.ExcludesOne,
-                ExcludesTwo = icdCode.ExcludesTwo,
-                Description = icdCode.Description,
-                Type = icdCode.Type
-            };
+            throw new System.NotImplementedException();
         }
 
-        public string GetByName(string icdName)
+        public string GetByName(string ICDName)
         {
-            string postURL = string.Format("http://icd10api.com/?code={0}&desc=short&r=json", icdName);
-            WebRequest request = WebRequest.Create(postURL);
-            request.Method = "GET";
-            request.ContentType = "application/json; charset=utf-8";
+            throw new System.NotImplementedException();
+        }
 
-            var response = (HttpWebResponse)request.GetResponse();
-            string jsonText;
-            using (var sr = new StreamReader(response.GetResponseStream()))
-            {
-                jsonText = sr.ReadToEnd();
-            }
-            return jsonText;
+        public async Task GetByNameAsync(string clientId, string clientSecret, string name)
+        {
+            var client = new HttpClient();
+            var disco = await client.GetByteArrayAsync
         }
     }
 }

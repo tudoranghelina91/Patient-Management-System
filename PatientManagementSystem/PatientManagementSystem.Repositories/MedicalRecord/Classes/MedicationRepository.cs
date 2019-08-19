@@ -45,5 +45,18 @@ namespace PatientManagementSystem.Repositories
                 context.SaveChanges();
             }
         }
+
+        public void Delete(Medication medication)
+        {
+            Medication result = context.Medications.FirstOrDefault(m => m.Id == medication.Id);
+            if (result != null)
+            {
+                context.MedicalRecordEntries.Attach(medication.MedicalRecordEntry);
+                context.MedicalRecordEntries.Attach(result.MedicalRecordEntry);
+                context.Entry(result.MedicalRecordEntry.Patient).State = System.Data.Entity.EntityState.Detached;
+                context.Medications.Remove(result);
+                context.SaveChanges();
+            }
+        }
     }
 }

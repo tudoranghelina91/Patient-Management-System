@@ -75,7 +75,7 @@ namespace PatientManagementSystem.Web.Areas.AdminArea.Controllers
                 model.Roles.Add(new SelectListItem { Value = r.Name, Text = r.Name });
             }
         }
-
+        [Authorize(Roles = "Admin")]
         private string getRoleId(AddUserViewModel model)
         {
             var context = new ApplicationDbContext();

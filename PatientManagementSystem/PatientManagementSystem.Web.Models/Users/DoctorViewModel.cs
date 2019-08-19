@@ -46,6 +46,7 @@ namespace PatientManagementSystem.Web.Models
             Neuropsychiatry,
             Neurology,
             Neurosurgery,
+            [Display(Name = "Nuclear Medicine")]
             NuclearMedicine,
             [Display(Name = "Obstretics & Gynaecology")]
             ObstetricsAndGynaecology,
@@ -56,6 +57,7 @@ namespace PatientManagementSystem.Web.Models
             OralAndMaxillofacialSurgery,
             Orthopaedics,
             Otorhinolaryngology,
+            [Display(Name ="Paediatric Surgery")]
             PaediatricSurgery,
             Paediatrics,
             Pathology,
@@ -92,6 +94,7 @@ namespace PatientManagementSystem.Web.Models
         [Required]
         public Specialty Specialization { get; set; }
         [Required]
+        [Display(Name = "License Number")]
         public string LicenseNo { get; set; }
     }
 }

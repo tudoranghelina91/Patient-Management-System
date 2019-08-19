@@ -89,5 +89,29 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
             AddMedicalRecordToTempData(medicationViewModel.MedicalRecordEntryViewModel.Id);
             return View(medicationViewModel);
         }
+
+        public ActionResult Delete(int id, int medicalRecordId)
+        {
+            MedicationViewModel medicationViewModel = medicationRepository.GetById(id).ToViewModel();
+            medicationViewModel.MedicalRecordEntryViewModel = medicalRecordEntryRepository.GetById(medicalRecordId).ToViewModel();
+            AddMedicalRecordToTempData(medicalRecordId);
+            return View(medicationViewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(MedicationViewModel medicationViewModel, int medicalRecordId)
+        {
+            medicationViewModel.MedicalRecordEntryViewModel = medicalRecordEntryRepository.GetById(medicalRecordId).ToViewModel();
+            AddMedicalRecordToTempData(medicationViewModel.MedicalRecordEntryViewModel.Id);
+
+            if (ModelState.IsValid)
+            {
+                AddMedicalRecordToTempData(medicationViewModel.MedicalRecordEntryViewModel.Id);
+                medicationRepository.Delete(medicationViewModel.ToDomainModel());
+                return RedirectToAction("Index", new { medicalRecordId = medicationViewModel.MedicalRecordEntryViewModel.Id });
+            }
+            AddMedicalRecordToTempData(medicationViewModel.MedicalRecordEntryViewModel.Id);
+            return View(medicationViewModel);
+        }
     }
 }

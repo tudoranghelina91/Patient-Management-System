@@ -1,0 +1,56 @@
+﻿@model PatientManagementSystem.Web.Models.MedicationViewModel
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>MedicationViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Administered)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Administered)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Prescribed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Prescribed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Renewed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Renewed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Allergies)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Allergies)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index", new { medicalRecordId = TempData["medicalRecordId"] })
+        </div>
+    }
+</div>

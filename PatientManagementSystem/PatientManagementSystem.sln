@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientManagementSystem.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientManagementSystem.Repositories", "PatientManagementSystem.Repositories\PatientManagementSystem.Repositories.csproj", "{268D457E-259E-41BB-97AA-0F04AA0DEDF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientManagementSystem.Services", "PatientManagementSystem.Services\PatientManagementSystem.Services.csproj", "{4B9E073F-BDB1-4302-848F-D5A3C53E5AF5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientManagementSystem.Web", "PatientManagementSystem.Web\PatientManagementSystem.Web.csproj", "{E8F5998F-E66A-40B5-93AF-77EF74B94E29}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatientManagementSystem.Extensions", "PatientManagementSystem.Extensions\PatientManagementSystem.Extensions.csproj", "{3B1D73C0-0A9D-43F3-858F-4575A94CB0C8}"
@@ -35,10 +33,6 @@ Global
 		{268D457E-259E-41BB-97AA-0F04AA0DEDF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{268D457E-259E-41BB-97AA-0F04AA0DEDF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{268D457E-259E-41BB-97AA-0F04AA0DEDF5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B9E073F-BDB1-4302-848F-D5A3C53E5AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B9E073F-BDB1-4302-848F-D5A3C53E5AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B9E073F-BDB1-4302-848F-D5A3C53E5AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B9E073F-BDB1-4302-848F-D5A3C53E5AF5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E8F5998F-E66A-40B5-93AF-77EF74B94E29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E8F5998F-E66A-40B5-93AF-77EF74B94E29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8F5998F-E66A-40B5-93AF-77EF74B94E29}.Release|Any CPU.ActiveCfg = Release|Any CPU

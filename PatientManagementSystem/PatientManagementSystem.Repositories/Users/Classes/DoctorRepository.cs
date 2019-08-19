@@ -12,6 +12,11 @@ namespace PatientManagementSystem.Repositories
             context.SaveChanges();
         }
 
+        public void Delete(Doctor entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public IList<Doctor> GetAll()
         {
             return context.Doctors.ToList();

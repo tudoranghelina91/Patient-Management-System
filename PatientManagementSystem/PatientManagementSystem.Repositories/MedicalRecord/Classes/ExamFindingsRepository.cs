@@ -44,5 +44,18 @@ namespace PatientManagementSystem.Repositories
                 context.SaveChanges();
             }
         }
+
+        public void Delete(ExamFindings examFindings)
+        {
+            ExamFindings result = context.ExamFindings.FirstOrDefault(e => e.Id == examFindings.Id);
+            if (result != null)
+            {
+                context.MedicalRecordEntries.Attach(examFindings.MedicalRecordEntry);
+                context.MedicalRecordEntries.Attach(result.MedicalRecordEntry);
+                context.Entry(result.MedicalRecordEntry.Patient).State = System.Data.Entity.EntityState.Detached;
+                context.ExamFindings.Remove(result);
+                context.SaveChanges();
+            }
+        }
     }
 }
