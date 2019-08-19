@@ -24,6 +24,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         public ActionResult Index(int medicalRecordId)
         {
             AddMedicalRecordToTempData(medicalRecordId);
+            TempData.Keep();
             IList<ExamFindingsViewModel> examFindingsViewModels = new List<ExamFindingsViewModel>();
             examFindingsViewModels = examFindingsRepository.GetByMedicalRecordEntryId(medicalRecordId).ToViewModel();
             return View(examFindingsViewModels);
@@ -61,6 +62,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
             ExamFindingsViewModel examFindingsViewModel = examFindingsRepository.GetById(id).ToViewModel();
             examFindingsViewModel.MedicalRecordEntryViewModel = medicalRecordEntryRepository.GetById(medicalRecordId).ToViewModel();
             AddMedicalRecordToTempData(medicalRecordId);
+            TempData.Keep();
             return View(examFindingsViewModel);
         }
 

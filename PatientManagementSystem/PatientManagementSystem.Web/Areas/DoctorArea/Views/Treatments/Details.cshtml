@@ -1,13 +1,13 @@
 ﻿@model PatientManagementSystem.Web.Models.TreatmentViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = $"Treatment #{Model.Id}";
 }
 
-<h2>Details</h2>
+    <h2>Treatment #@Model.Id</h2>
 
 <div>
-    <h4>TreatmentViewModel</h4>
+    <h4>Treatment #@Model.Id for Medical Record Entry #@TempData["medicalRecordId"] </h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>

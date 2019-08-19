@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using PatientManagementSystem.Repositories;
+using PatientManagementSystem.Web.Models;
+using System.Web.Mvc;
 
 namespace PatientManagementSystem.Web.Areas.PatientArea.Controllers
 {

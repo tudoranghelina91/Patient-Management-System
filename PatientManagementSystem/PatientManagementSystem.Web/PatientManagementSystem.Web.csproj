@@ -218,8 +218,6 @@
     <Content Include="Areas\PatientArea\Views\web.config" />
     <Content Include="Areas\DoctorArea\Views\_ViewStart.cshtml" />
     <Content Include="Areas\DoctorArea\Views\Shared\_Layout.cshtml" />
-    <Content Include="Areas\DoctorArea\Views\Home\Index.cshtml" />
-    <Content Include="Areas\AdminArea\Views\Home\Index.cshtml" />
     <Content Include="Areas\DoctorArea\Views\ExamFindings\Create.cshtml" />
     <Content Include="Areas\DoctorArea\Views\ExamFindings\Details.cshtml" />
     <Content Include="Areas\DoctorArea\Views\ExamFindings\Index.cshtml" />
@@ -228,7 +226,6 @@
     <Content Include="Areas\DoctorArea\Views\MedicalRecords\Index.cshtml" />
     <Content Include="Areas\DoctorArea\Views\MedicalRecords\Details.cshtml" />
     <Content Include="Areas\DoctorArea\Views\Patients\Index.cshtml" />
-    <Content Include="Areas\DoctorArea\Views\Patients\Edit.cshtml" />
     <Content Include="Areas\DoctorArea\Views\Patients\Details.cshtml" />
     <Content Include="Areas\DoctorArea\Views\MedicalRecords\Edit.cshtml" />
     <Content Include="Areas\DoctorArea\Views\Medication\Index.cshtml" />
@@ -239,6 +236,8 @@
     <Content Include="Areas\DoctorArea\Views\Treatments\Details.cshtml" />
     <Content Include="Areas\DoctorArea\Views\Treatments\Edit.cshtml" />
     <Content Include="Areas\DoctorArea\Views\Treatments\Index.cshtml" />
+    <Content Include="Areas\AdminArea\Views\Home\Index.cshtml" />
+    <Content Include="Areas\DoctorArea\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

@@ -1,13 +1,13 @@
 ﻿@model PatientManagementSystem.Web.Models.ExamFindingsViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = $"Exam Findings #{Model.Id} for Medical Record #{Model.MedicalRecordEntryViewModel.Id}";
 }
 
-<h2>Details</h2>
+    <h2>Exam Findings #@Model.Id for Medical Record #@Model.MedicalRecordEntryViewModel.Id</h2>
 
 <div>
-    <h4>ExamFindingsViewModel</h4>
+    <h4>Exam Findings #@Model.Id</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>

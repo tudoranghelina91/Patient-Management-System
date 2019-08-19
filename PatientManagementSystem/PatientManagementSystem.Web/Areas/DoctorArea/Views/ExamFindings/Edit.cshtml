@@ -1,17 +1,17 @@
 ﻿@model PatientManagementSystem.Web.Models.ExamFindingsViewModel
 
 @{
-    ViewBag.Title = $"Edit Exam Finding #{Model.Id} for Medical Record Entry #{Model.MedicalRecordEntryViewModel.Id} for {Model.MedicalRecordEntryViewModel.PatientViewModel.FirstName} {Model.MedicalRecordEntryViewModel.PatientViewModel.LastName}";
+    ViewBag.Title = $"Edit Exam Finding #{Model.Id} for Medical Record Entry #{Model.MedicalRecordEntryViewModel.Id}";
 }
 
-<h2>Edit</h2>
+<h2>Edit Exam Finding #@Model.Id</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ExamFindingsViewModel</h4>
+        <h4>Edit Exam Finding #@Model.Id for Medical Record Entry #@Model.MedicalRecordEntryViewModel.Id</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)

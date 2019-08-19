@@ -23,6 +23,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         public ActionResult Index(int medicalRecordId)
         {
             AddMedicalRecordToTempData(medicalRecordId);
+            TempData.Keep();
             IList<TreatmentViewModel> treatmentViewModels = new List<TreatmentViewModel>();
             treatmentViewModels = treatmentRepository.GetByMedicalRecordEntryId(medicalRecordId).ToViewModel();
             return View(treatmentViewModels);

@@ -22,6 +22,11 @@ namespace PatientManagementSystem.Repositories
             return context.Admins.FirstOrDefault(a => a.Id == id);
         }
 
+        public Admin GetByIdentityId(string identityId)
+        {
+            return context.Admins.FirstOrDefault(a => a.IdentityId == identityId);
+        }
+
         public void Update(Admin entity)
         {
             throw new System.NotImplementedException();

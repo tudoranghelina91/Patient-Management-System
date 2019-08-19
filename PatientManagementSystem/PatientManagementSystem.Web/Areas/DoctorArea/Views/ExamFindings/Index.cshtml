@@ -7,7 +7,7 @@
 <h2>Exam Findings for Medical Record entry #@TempData["medicalRecordId"]</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { medicalRecordId = TempData["medicalRecordId"] })
+    @Html.ActionLink("Add exam finding", "Create", new { medicalRecordId = TempData["medicalRecordId"] })
 </p>
 <table class="table">
     <tr>
@@ -42,4 +42,6 @@
     </tr>
 }
 
+
 </table>
+@Html.ActionLink($"Back to Medical Record Entry #{TempData["medicalRecordId"]}", "Details", "MedicalRecords", new { id = TempData["medicalRecordId"], patientId = TempData["patientId"] }, null)

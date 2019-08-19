@@ -4,10 +4,10 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Manage @Model.FirstName @Model.LastName</h2>
 
 <div>
-    <h4>PatientViewModel</h4>
+    <h4>Manage @Model.FirstName @Model.LastName medical record</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -109,7 +109,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Medical Record", "Index", "MedicalRecords", new { patientId = Model.Id }, null) |
     @Html.ActionLink("Back to List", "Index")
 </p>

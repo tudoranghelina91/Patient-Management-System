@@ -24,6 +24,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         public ActionResult Index(int medicalRecordId)
         {
             AddMedicalRecordToTempData(medicalRecordId);
+            TempData.Keep();
             IList<MedicationViewModel> medicationViewModels = new List<MedicationViewModel>();
             medicationViewModels = medicationRepository.GetByMedicalRecordEntryId(medicalRecordId).ToViewModel();
             return View(medicationViewModels);
@@ -44,7 +45,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         {
             medicationViewModel.MedicalRecordEntryViewModel = medicalRecordEntryRepository.GetById((int)TempData["medicalRecordId"]).ToViewModel();
             AddMedicalRecordToTempData(medicationViewModel.MedicalRecordEntryViewModel.Id);
-
+            TempData.Keep();
             if (ModelState.IsValid)
             {
                 AddMedicalRecordToTempData(medicationViewModel.MedicalRecordEntryViewModel.Id);
@@ -61,6 +62,7 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
             MedicationViewModel medicationViewModel = medicationRepository.GetById(id).ToViewModel();
             medicationViewModel.MedicalRecordEntryViewModel = medicalRecordEntryRepository.GetById(medicalRecordId).ToViewModel();
             AddMedicalRecordToTempData(medicalRecordId);
+            TempData.Keep();
             return View(medicationViewModel);
         }
         [Authorize(Roles = "Doctor")]

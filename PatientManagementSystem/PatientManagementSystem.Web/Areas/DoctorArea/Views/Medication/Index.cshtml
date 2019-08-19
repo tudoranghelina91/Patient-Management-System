@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<PatientManagementSystem.Web.Models.MedicationViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = $"Medication for Medical Record Entry #{TempData["medicalRecordId"]}";
 }
 
-<h2>Index</h2>
+    <h2>Medication for Medical Record Entry #@TempData["medicalRecordId"]</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { medicalRecordId = TempData["medicalRecordId"] })
+    @Html.ActionLink("Add medication", "Create", new { medicalRecordId = TempData["medicalRecordId"] })
 </p>
 <table class="table">
     <tr>
@@ -26,26 +26,28 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Administered)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Prescribed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Renewed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Allergies)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id, medicalRecordId = TempData["medicalRecordId"] }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id, medicalRecordId = TempData["medicalRecordId"] }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id, medicalRecordId = TempData["medicalRecordId"] })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administered)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prescribed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Renewed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Allergies)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id, medicalRecordId = TempData["medicalRecordId"] }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id, medicalRecordId = TempData["medicalRecordId"] }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id, medicalRecordId = TempData["medicalRecordId"] })
+            </td>
+        </tr>
+    }
 
 </table>
+@Html.ActionLink($"Back to Medical Record Entry #{TempData["medicalRecordId"]}", "Details", "MedicalRecords", new { id = TempData["medicalRecordId"], patientId = TempData["patientId"] }, null)

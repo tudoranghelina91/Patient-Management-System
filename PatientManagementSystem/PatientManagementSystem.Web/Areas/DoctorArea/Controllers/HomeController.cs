@@ -1,4 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using PatientManagementSystem.Web.Models;
+using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
+using PatientManagementSystem.Repositories;
+using PatientManagementSystem.Extensions;
 
 namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
 {
@@ -8,7 +12,11 @@ namespace PatientManagementSystem.Web.Areas.DoctorArea.Controllers
         [Authorize(Roles = "Doctor")]
         public ActionResult Index()
         {
-            return View();
+            IDoctorRepository doctorRepository = new DoctorRepository();
+            DoctorViewModel currentUser = new DoctorViewModel();
+            currentUser = doctorRepository.GetByIdentityId(User.Identity.GetUserId()).ToViewModel();
+
+            return View(currentUser);
         }
     }
 }
