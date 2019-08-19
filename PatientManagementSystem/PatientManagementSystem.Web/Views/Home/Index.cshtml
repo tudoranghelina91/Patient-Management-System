@@ -5,27 +5,35 @@
 <div class="jumbotron">
     <h1>Patient Management System</h1>
     <p class="lead">We know how important healthcare is for both you and your patients. This Web Application is meant to assist doctors and patients in providing the best healthcare solution for the both of you!</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    @Html.ActionLink("Get Started!", "Login", "Account", null, new { @class = "btn btn-primary btn-lg" })
 </div>
 
 <div class="row">
     <div class="col-md-4">
-        <h2>Getting started</h2>
+        <h2>Default Login Credentials</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            To login as Admin use 'admin' and password 'Admin@69!' without quotes
+        </p>        
+        <p>
+            To login as Doctor use 'doctor' and password 'Doctor@69!' without quotes
+        </p>        
+        <p>
+            To login as Patient use 'patient' and password 'Patient@69!' without quotes
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        @Html.ActionLink("Proceed to the login screen", "Login", "Account", null, new { @class = "btn btn-default" })
     </div>
     <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <h2>How it works?</h2>
+        <p>This app is a mock-up for a Patient Management System for Medical use.</p>
+        <p>The app is built using Entity Framework Code-First Approach. It consists of three user roles, each authorized to do separate things.</p> 
+        <p>The app has guards in place so no user can perform anything that it isn't authorized to do so.</p>
+        @Html.ActionLink("Read more", "About", "Home", null, new { @class = "btn btn-default" })
     </div>
     <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        <h2>User Roles</h2>
+        <p>Currently, an admin is capable only of adding user accounts, however, in the near future, will be able to edit and delete users and ammend user roles</p>
+        <p>The doctor is able to edit medical records for patients, add entries, medication, allergies, treatments and so on and so forth. In the future he will also be able to look-up for diagnostics using a third party API</p>
+        <p>A patient should be able to view it's own record and it's record alone and no one else's, however, being a non important feature, it is currently unavailable at this time.</p>
+        @Html.ActionLink("Get in touch!", "Contact", "Home", null, new { @class = "btn btn-default" })
     </div>
 </div>
